@@ -1,0 +1,3 @@
+/home/gaurang/d_drive/College Material/MCA_Sem2/DAA/build/CMakeFiles/sorting.dir
+/home/gaurang/d_drive/College Material/MCA_Sem2/DAA/build/CMakeFiles/edit_cache.dir
+/home/gaurang/d_drive/College Material/MCA_Sem2/DAA/build/CMakeFiles/rebuild_cache.dir
