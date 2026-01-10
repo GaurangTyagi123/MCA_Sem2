@@ -3,6 +3,7 @@
 #include <sstream>
 #include <string>
 #include <cstdlib>
+#include <chrono>
 
 // Default Contructor
 Sorting_Algorithms::Sorting_Algorithms() : n(0)
@@ -23,13 +24,13 @@ Sorting_Algorithms::Sorting_Algorithms(int input_size) : n(input_size)
      * opens the file containing generated data and stores them in the data array,
      */
     data = new Person[n];
-    std::string generator_path = "python3 /home/shared/College\\ Material/MCA_Sem2/DAA/data/generator.py ";
+    std::string generator_path = "python3 /home/gaurang/d_drive/College\\ Material/MCA_Sem2/DAA/data/generator.py ";
     generator_path.append(std::to_string(n));
     std::system(generator_path.c_str());
 
     std::fstream strm;
 
-    std::string input_path = "/home/shared/College Material/MCA_Sem2/DAA/data/";
+    std::string input_path = "/home/gaurang/d_drive/College Material/MCA_Sem2/DAA/data/";
     input_path.append(std::to_string(n) + "_set.csv");
     strm.open(input_path, std::ios::in);
 
@@ -84,7 +85,7 @@ void Sorting_Algorithms::setSize(int input_size)
  * @brief Sort the data array based on sort_field
  *
  * @param sort_field Index of the field used for sorting.
- *
+ * @return Time taken to sort the dataset
  * @details
  * Sorting behavior:
  *- 0 : Sort by age
@@ -93,12 +94,16 @@ void Sorting_Algorithms::setSize(int input_size)
  *
  * If there is no data, the function returns immediately.
  */
-void Sorting_Algorithms::insertion_sort(size_t sort_field) const
+float Sorting_Algorithms::insertion_sort(size_t sort_field) const
 {
     if (!data)
+    {
         std::cout << "There is no data" << std::endl;
+        return -1;
+    }
     else
     {
+        auto start = std::chrono::steady_clock::now();
         switch (sort_field)
         {
         case 0:
@@ -144,6 +149,9 @@ void Sorting_Algorithms::insertion_sort(size_t sort_field) const
         default:
             std::cout << "INVALID OPTION" << std::endl;
         }
+        auto stop = std::chrono::steady_clock::now();
+        std::chrono::duration<double> time = stop - start;
+        return time.count();
     }
 }
 /**
@@ -155,5 +163,35 @@ void Sorting_Algorithms::display() const
     for (int i = 0; i < n; i++)
     {
         std::cout << data[i].name << " - " << data[i].age << std::endl;
+    }
+}
+/**
+ * @brief Function to generate report for datasets of any size
+ * @param dataset_size size of the dataset
+ * @details
+ * Create or edit a file called report.csv.
+ * Generate 10 random datasets of size dataset_size and calculates the average running time for the algorithm
+ * and writes it in report.csv file
+ */
+void generate_report_insertion_sort(size_t dataset_size)
+{
+    std::fstream strm("/home/gaurang/d_drive/College Material/MCA_Sem2/DAA/data/report_insertion_sort.csv", std::ios::app);
+    Sorting_Algorithms s(dataset_size);
+
+    double avg_time = 0;
+    for (int set = 0; set < 10; set++)
+    {
+        Sorting_Algorithms *s = new Sorting_Algorithms(dataset_size);
+        double time = s->insertion_sort(0);
+        avg_time += time;
+    }
+    avg_time /= 10;
+    if (strm.is_open())
+    {
+        std::cout << "DATASET SIZE: "<<dataset_size<<" AVERAGE TIME: " << (avg_time) << std::endl;
+        strm << dataset_size << "," << avg_time << "\r";
+        strm.close();
+
+        std::system("python3 /home/gaurang/d_drive/College\\ Material/MCA_Sem2/DAA/charts/visualizer.py");
     }
 }

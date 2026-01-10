@@ -1,9 +1,12 @@
 #include "sorting.h"
+
 int main()
 {
-    Sorting_Algorithms s(5);
+    const int dataset_sizes[] = {10, 20, 30, 40, 50, 60, 70};
 
-    s.insertion_sort(2);
-    s.display();
+    for(int size : dataset_sizes){
+        generate_report_insertion_sort(size);
+    }
+
     return 0;
 }

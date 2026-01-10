@@ -1,10 +1,15 @@
 import sys
-
 from faker import Faker
 from random import random
-from pprint import pprint
 
 def generate_data(n:int)->list:
+    
+    """
+        @brief Function to generate random dataset of size n
+        @input n:int Size of the dataset
+        @return output:dict Dictionary of name and age
+    """
+    
     fake = Faker()
     output = list()
     if n <= 0:
@@ -23,15 +28,18 @@ def generate_data(n:int)->list:
 
 
 if __name__ == '__main__':
-    arg_list = sys.argv
+    # get the arguments passed in the command line
+    arg_list = sys.argv 
     
+    # default value of 10 for the dataset size
     n:int = 10
+    
     if len(arg_list) > 1:
         if type(arg_list[1] == 'int'):
             n = int(arg_list[1])
+            
     data = generate_data(n)
-    with open(f"/home/shared/College Material/MCA_Sem2/DAA/data/{n}_set.csv",'w+') as f:
-        # f.write('name,age\n')
+    with open(f"/home/gaurang/d_drive/College Material/MCA_Sem2/DAA/data/{n}_set.csv",'w+') as f:
         for rec in data:
             name,age = rec['name'],rec['age']
             f.write(f"{name},{age}")
