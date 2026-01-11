@@ -4,7 +4,7 @@
 <br>
 
 # 1.) Design & Analysis of Algorithms
-* ### Practical 1 : [Insertion Sort](https://github.com/GaurangTyagi123/MCA_Sem2/DAA/tree/main/DAA)
+* ### Practical 1 : [Insertion Sort](./DAA/practicals/sorting.cpp)
     - `Implement Insertion Sort  and run it on a synthetic data of (Name : string type, age : float type) for n = 10, 20, ...100. For each n, randomly generate at least 10 data sets. Report the average number of comparisons for each n. Plot a graph and obtain a best-fit curve. (6 hours)`
 
             a.) Write a function to sort on age
@@ -19,7 +19,7 @@
 
 # 2.)  Data Mining
 
-* ### Practical 1 : [magic gama telescope](https://github.com/GaurangTyagi123/MCA_Sem2/tree/main/DM)
+* ### Practical 1 : [magic gama telescope](./DM/magic_gamma.ipynb)
     - `Lab 1: Exploratory Analysis and Class Imbalance Handling using the MAGIC Gamma Telescope Dataset`
         
             Import the MAGIC Gamma Telescope dataset from the UCI Machine Learning Repository. Perform exploratory data analysis by visualizing the correlation between each input feature and the target class. Further, demonstrate the effect of class imbalance by applying a Random Oversampling technique and illustrate its impact on the class distribution.
