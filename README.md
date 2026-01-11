@@ -4,7 +4,7 @@
 <br>
 
 # 1.) Design & Analysis of Algorithms
-* ### Practical 1 : [Insertion Sort](./DAA/practicals/sorting.cpp)
+* ### Practical 1 : [Insertion Sort](./DAA/practicals/sorting.cpp#L97)
     - `Implement Insertion Sort  and run it on a synthetic data of (Name : string type, age : float type) for n = 10, 20, ...100. For each n, randomly generate at least 10 data sets. Report the average number of comparisons for each n. Plot a graph and obtain a best-fit curve. (6 hours)`
 
             a.) Write a function to sort on age
