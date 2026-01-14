@@ -23,3 +23,20 @@
     - `Lab 1: Exploratory Analysis and Class Imbalance Handling using the MAGIC Gamma Telescope Dataset`
         
             Import the MAGIC Gamma Telescope dataset from the UCI Machine Learning Repository. Perform exploratory data analysis by visualizing the correlation between each input feature and the target class. Further, demonstrate the effect of class imbalance by applying a Random Oversampling technique and illustrate its impact on the class distribution.
+
+# 3.) Operating System
+*  ### Practical 1: [Commands](./OS/Assignments/Assignment-1/Assignment-1-sol.pdf)  
+    - Write Linux commands for the following commands
+        * Create a Project Directory 
+
+        * Navigate to the Project Directory
+
+        * Create Subdirectories: css & js
+
+        * Navigate to the 'css' Directory 
+
+        * Create css File Style.css
+
+        * Navigate to the 'js' Directory and create javascript file script.js 
+
+        * Delete file Style.css
