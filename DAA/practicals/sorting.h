@@ -9,7 +9,10 @@ struct Person
     std::string name; // name of the person
     double age;       // age of the person
 };
-
+struct Report{
+    int comparisons = 0;
+    float time = 0.0;
+};
 // Represents data type for all the sorting algorithms that will be used in the practicals
 class Sorting_Algorithms
 {
@@ -31,8 +34,8 @@ public:
     void display() const;
 
     // algorithms
-    float insertion_sort(size_t) const;
+    Report insertion_sort(size_t) const;
 };
 
-void generate_report_insertion_sort(size_t);
+void generate_report_insertion_sort(size_t,size_t);
 #endif

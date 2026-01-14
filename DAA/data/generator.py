@@ -1,5 +1,6 @@
 import sys
-from faker import Faker
+import os
+import pandas as pd
 from random import random
 
 def generate_data(n:int)->list:
@@ -10,15 +11,13 @@ def generate_data(n:int)->list:
         @return output:dict Dictionary of name and age
     """
     
-    fake = Faker()
     output = list()
     if n <= 0:
         return output
     else:
-        for i in range(n):
+        names = pd.read_csv(f"/home/gaurang/d_drive/College Material/MCA_Sem2/DAA/data/name_repo.csv").sample(n,replace=True).name.values.reshape(-1,)
+        for name in names:
             record = dict();
-
-            name:str = fake.name()
             age:float = round(random()*100,2)
 
             record['name'] = name

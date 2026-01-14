@@ -94,12 +94,13 @@ void Sorting_Algorithms::setSize(int input_size)
  *
  * If there is no data, the function returns immediately.
  */
-float Sorting_Algorithms::insertion_sort(size_t sort_field) const
+Report Sorting_Algorithms::insertion_sort(size_t sort_field) const
 {
+    Report rep;
     if (!data)
     {
         std::cout << "There is no data" << std::endl;
-        return -1;
+        return rep;
     }
     else
     {
@@ -113,6 +114,7 @@ float Sorting_Algorithms::insertion_sort(size_t sort_field) const
                 int j = i - 1;
                 while (j >= 0 && data[j].name.compare(key.name) > 0)
                 {
+                    rep.comparisons++;
                     data[j + 1] = data[j];
                     --j;
                 }
@@ -126,6 +128,7 @@ float Sorting_Algorithms::insertion_sort(size_t sort_field) const
                 int j = i - 1;
                 while (j >= 0 && data[j].age > key.age)
                 {
+                    rep.comparisons++;
                     data[j + 1] = data[j];
                     --j;
                 }
@@ -139,6 +142,7 @@ float Sorting_Algorithms::insertion_sort(size_t sort_field) const
                 int j = i - 1;
                 while (j >= 0 && (data[j].name.compare(key.name) > 0 || (data[j].name.compare(key.name) == 0 && data[j].age > key.age)))
                 {
+                    rep.comparisons++;
                     data[j + 1] = data[j];
                     --j;
                 }
@@ -151,7 +155,17 @@ float Sorting_Algorithms::insertion_sort(size_t sort_field) const
         }
         auto stop = std::chrono::steady_clock::now();
         std::chrono::duration<double> time = stop - start;
-        return time.count();
+        rep.time = time.count();
+
+        std::string output_path = "/home/gaurang/d_drive/College Material/MCA_Sem2/DAA/output/";
+        output_path.append(std::to_string(n) + "_set.csv");
+        std::fstream strm(output_path, std::ios::out);
+        for (int i = 0; i < n;i++)
+        {
+            strm << data[i].name << "," << data[i].age << "\r";
+        }
+        strm.close();
+        return rep;
     }
 }
 /**
@@ -173,23 +187,27 @@ void Sorting_Algorithms::display() const
  * Generate 10 random datasets of size dataset_size and calculates the average running time for the algorithm
  * and writes it in report.csv file
  */
-void generate_report_insertion_sort(size_t dataset_size)
+void generate_report_insertion_sort(size_t dataset_size,size_t option=0)
 {
     std::fstream strm("/home/gaurang/d_drive/College Material/MCA_Sem2/DAA/data/report_insertion_sort.csv", std::ios::app);
     Sorting_Algorithms s(dataset_size);
 
     double avg_time = 0;
+    double avg_comparisons = 0;
     for (int set = 0; set < 10; set++)
     {
         Sorting_Algorithms *s = new Sorting_Algorithms(dataset_size);
-        double time = s->insertion_sort(0);
-        avg_time += time;
+        Report rep = s->insertion_sort(option);
+        avg_time += rep.time;
+        avg_comparisons += rep.comparisons;
+        delete s;
     }
     avg_time /= 10;
+    avg_comparisons /= 10;
     if (strm.is_open())
     {
-        std::cout << "DATASET SIZE: "<<dataset_size<<" AVERAGE TIME: " << (avg_time) << std::endl;
-        strm << dataset_size << "," << avg_time << "\r";
+        std::cout << "DATASET SIZE: "<<dataset_size<<" AVERAGE TIME: " << (avg_time) <<" AVERAGE COMPARISONS: "<<avg_comparisons<< std::endl;
+        strm << dataset_size << "," << avg_time << ","<<avg_comparisons<<"\r";
         strm.close();
 
         std::system("python3 /home/gaurang/d_drive/College\\ Material/MCA_Sem2/DAA/charts/visualizer.py");
