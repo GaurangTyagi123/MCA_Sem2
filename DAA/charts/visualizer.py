@@ -15,11 +15,14 @@ def generate_chart():
     # y = [float(row[1]) for row in str_data]
     
     report = pd.read_csv('/home/gaurang/d_drive/College Material/MCA_Sem2/DAA/data/report_insertion_sort.csv')
+    
     report.loc[len(report)] = report.columns
-    report.columns =['size','avg_time','avg_comparisons']
+    report.columns =['size','avg_time','avg_comparisons','avg_assignments']
+    
     report['size'] = report['size'].astype(int)
     report['avg_time'] = report['avg_time'].astype(float)
     report['avg_comparisons'] = report['avg_comparisons'].astype(float)
+    report['avg_assignments'] = report['avg_assignments'].astype(float)
     report = report.sort_values('size')
     
     
@@ -35,6 +38,11 @@ def generate_chart():
 
     plt.subplot(2,2,2)
     sns.lineplot(report,x="size",y="avg_comparisons",color="blue",marker="o")
+    plt.legend(["average comparisons"])
+    plt.title("AVERAGE COMPARISONS")
+    
+    plt.subplot(2,2,3)
+    sns.lineplot(report,x="size",y="avg_assignments",color="green",marker="o")
     plt.legend(["average comparisons"])
     plt.title("AVERAGE COMPARISONS")
 

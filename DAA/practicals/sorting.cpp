@@ -116,9 +116,11 @@ Report Sorting_Algorithms::insertion_sort(size_t sort_field) const
                 {
                     rep.comparisons++;
                     data[j + 1] = data[j];
+                    rep.assignments++;
                     --j;
                 }
                 data[j + 1] = key;
+                rep.assignments++;
             }
             break;
         case 1:
@@ -130,9 +132,11 @@ Report Sorting_Algorithms::insertion_sort(size_t sort_field) const
                 {
                     rep.comparisons++;
                     data[j + 1] = data[j];
+                    rep.assignments++;
                     --j;
                 }
                 data[j + 1] = key;
+                rep.assignments++;
             }
             break;
         case 2:
@@ -144,10 +148,12 @@ Report Sorting_Algorithms::insertion_sort(size_t sort_field) const
                 {
                     rep.comparisons++;
                     data[j + 1] = data[j];
+                    rep.assignments++;
                     --j;
                 }
 
                 data[j + 1] = key;
+                rep.assignments++;
             }
             break;
         default:
@@ -160,7 +166,8 @@ Report Sorting_Algorithms::insertion_sort(size_t sort_field) const
         std::string output_path = "/home/gaurang/d_drive/College Material/MCA_Sem2/DAA/output/";
         output_path.append(std::to_string(n) + "_set.csv");
         std::fstream strm(output_path, std::ios::out);
-        for (int i = 0; i < n;i++)
+
+        for (int i = 0; i < n; i++)
         {
             strm << data[i].name << "," << data[i].age << "\r";
         }
@@ -187,27 +194,33 @@ void Sorting_Algorithms::display() const
  * Generate 10 random datasets of size dataset_size and calculates the average running time for the algorithm
  * and writes it in report.csv file
  */
-void generate_report_insertion_sort(size_t dataset_size,size_t option=0)
+void generate_report_insertion_sort(size_t dataset_size, size_t option = 0)
 {
     std::fstream strm("/home/gaurang/d_drive/College Material/MCA_Sem2/DAA/data/report_insertion_sort.csv", std::ios::app);
     Sorting_Algorithms s(dataset_size);
 
     double avg_time = 0;
     double avg_comparisons = 0;
+    double avg_assignments = 0;
+
     for (int set = 0; set < 10; set++)
     {
         Sorting_Algorithms *s = new Sorting_Algorithms(dataset_size);
         Report rep = s->insertion_sort(option);
         avg_time += rep.time;
         avg_comparisons += rep.comparisons;
+        avg_assignments += rep.assignments;
+
         delete s;
     }
     avg_time /= 10;
     avg_comparisons /= 10;
+    avg_assignments /= 10;
+
     if (strm.is_open())
     {
-        std::cout << "DATASET SIZE: "<<dataset_size<<" AVERAGE TIME: " << (avg_time) <<" AVERAGE COMPARISONS: "<<avg_comparisons<< std::endl;
-        strm << dataset_size << "," << avg_time << ","<<avg_comparisons<<"\r";
+        std::cout << "DATASET SIZE: " << dataset_size << " AVERAGE TIME: " << (avg_time) << " AVERAGE COMPARISONS: " << avg_comparisons << " AVERAGE ASSIGNMENTS: " << avg_assignments << std::endl;
+        strm << dataset_size << "," << avg_time << "," << avg_comparisons << "," << avg_assignments << "\r";
         strm.close();
 
         std::system("python3 /home/gaurang/d_drive/College\\ Material/MCA_Sem2/DAA/charts/visualizer.py");

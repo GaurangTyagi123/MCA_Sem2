@@ -11,6 +11,7 @@ struct Person
 };
 struct Report{
     int comparisons = 0;
+    int assignments = 0;
     float time = 0.0;
 };
 // Represents data type for all the sorting algorithms that will be used in the practicals
