@@ -16,9 +16,9 @@ def generate_data(n:int)->list:
         return output
     else:
         names = pd.read_csv(f"/home/gaurang/d_drive/College Material/MCA_Sem2/DAA/data/name_repo.csv").sample(n,replace=True).name.values.reshape(-1,)
-        for name in names:
+        ages = pd.read_csv(f"/home/gaurang/d_drive/College Material/MCA_Sem2/DAA/data/age_repo.csv").sample(n,replace=True).age.values.reshape(-1,)
+        for name,age in zip(names,ages):
             record = dict();
-            age:float = round(random()*100,2)
 
             record['name'] = name
             record['age'] = age

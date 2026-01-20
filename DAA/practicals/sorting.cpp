@@ -144,7 +144,7 @@ Report Sorting_Algorithms::insertion_sort(size_t sort_field) const
             {
                 Person key = data[i];
                 int j = i - 1;
-                while (j >= 0 && (data[j].name.compare(key.name) > 0 || (data[j].name.compare(key.name) == 0 && data[j].age > key.age)))
+                while (j >= 0 && (data[j].age > key.age || (data[j].age == key.age && data[j].name.compare(key.name) > 0 )))
                 {
                     rep.comparisons++;
                     data[j + 1] = data[j];

@@ -44,7 +44,7 @@ def generate_chart():
     plt.subplot(2,2,3)
     sns.lineplot(report,x="size",y="avg_assignments",color="green",marker="o")
     plt.legend(["average comparisons"])
-    plt.title("AVERAGE COMPARISONS")
+    plt.title("AVERAGE ASSIGNMENTS")
 
     plt.savefig('/home/gaurang/d_drive/College Material/MCA_Sem2/DAA/charts/insertion_sort.png')
 
