@@ -38,5 +38,5 @@ public:
     Report insertion_sort(size_t) const;
 };
 
-void generate_report_insertion_sort(size_t,size_t);
+void generate_report_insertion_sort(size_t,size_t,std::string);
 #endif

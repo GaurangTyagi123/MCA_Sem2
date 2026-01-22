@@ -15,8 +15,8 @@ def generate_data(n:int)->list:
     if n <= 0:
         return output
     else:
-        names = pd.read_csv(f"/home/gaurang/d_drive/College Material/MCA_Sem2/DAA/data/name_repo.csv").sample(n,replace=True).name.values.reshape(-1,)
-        ages = pd.read_csv(f"/home/gaurang/d_drive/College Material/MCA_Sem2/DAA/data/age_repo.csv").sample(n,replace=True).age.values.reshape(-1,)
+        names = pd.read_csv(f"./data/name_repo.csv").sample(n,replace=True).name.values.reshape(-1,)
+        ages = pd.read_csv(f"./data/age_repo.csv").sample(n,replace=True).age.values.reshape(-1,)
         for name,age in zip(names,ages):
             record = dict();
 
@@ -38,7 +38,7 @@ if __name__ == '__main__':
             n = int(arg_list[1])
             
     data = generate_data(n)
-    with open(f"/home/gaurang/d_drive/College Material/MCA_Sem2/DAA/data/{n}_set.csv",'w+') as f:
+    with open(f"./data/{n}_set.csv",'w+') as f:
         for rec in data:
             name,age = rec['name'],rec['age']
             f.write(f"{name},{age}")

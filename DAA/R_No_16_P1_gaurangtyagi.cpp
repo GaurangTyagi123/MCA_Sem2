@@ -24,13 +24,13 @@ Sorting_Algorithms::Sorting_Algorithms(int input_size) : n(input_size)
      * opens the file containing generated data and stores them in the data array,
      */
     data = new Person[n];
-    std::string generator_path = "python3 /home/gaurang/d_drive/College\\ Material/MCA_Sem2/DAA/data/generator.py ";
+    std::string generator_path = "python ./data/generator.py ";
     generator_path.append(std::to_string(n));
     std::system(generator_path.c_str());
 
     std::fstream strm;
 
-    std::string input_path = "/home/gaurang/d_drive/College Material/MCA_Sem2/DAA/data/";
+    std::string input_path = "./data/";
     input_path.append(std::to_string(n) + "_set.csv");
     strm.open(input_path, std::ios::in);
 
@@ -144,7 +144,7 @@ Report Sorting_Algorithms::insertion_sort(size_t sort_field) const
             {
                 Person key = data[i];
                 int j = i - 1;
-                while (j >= 0 && (data[j].age > key.age || (data[j].age == key.age && data[j].name.compare(key.name) > 0 )))
+                while (j >= 0 && (data[j].age > key.age || (data[j].age == key.age && data[j].name.compare(key.name) > 0)))
                 {
                     rep.comparisons++;
                     data[j + 1] = data[j];
@@ -163,7 +163,7 @@ Report Sorting_Algorithms::insertion_sort(size_t sort_field) const
         std::chrono::duration<double> time = stop - start;
         rep.time = time.count();
 
-        std::string output_path = "/home/gaurang/d_drive/College Material/MCA_Sem2/DAA/output/";
+        std::string output_path = "./output/";
         output_path.append(std::to_string(n) + "_set.csv");
         std::fstream strm(output_path, std::ios::out);
 
@@ -194,9 +194,10 @@ void Sorting_Algorithms::display() const
  * Generate 10 random datasets of size dataset_size and calculates the average running time for the algorithm
  * and writes it in report.csv file
  */
-void generate_report_insertion_sort(size_t dataset_size, size_t option = 0)
+void generate_report_insertion_sort(size_t dataset_size, size_t option, std::string report_name)
 {
-    std::fstream strm("/home/gaurang/d_drive/College Material/MCA_Sem2/DAA/data/report_insertion_sort.csv", std::ios::app);
+    std::string file_path = "./data/" + report_name;
+    std::fstream strm(file_path, std::ios::app);
     Sorting_Algorithms s(dataset_size);
 
     double avg_time = 0;
@@ -222,7 +223,59 @@ void generate_report_insertion_sort(size_t dataset_size, size_t option = 0)
         std::cout << "DATASET SIZE: " << dataset_size << " AVERAGE TIME: " << (avg_time) << " AVERAGE COMPARISONS: " << avg_comparisons << " AVERAGE ASSIGNMENTS: " << avg_assignments << std::endl;
         strm << dataset_size << "," << avg_time << "," << avg_comparisons << "," << avg_assignments << "\r";
         strm.close();
-
-        std::system("python3 /home/gaurang/d_drive/College\\ Material/MCA_Sem2/DAA/charts/visualizer.py");
     }
+}
+
+void openImage(const std::string &path)
+{
+#ifdef _WIN32
+    // Windows: opens with default app
+    std::string cmd = "start \"\" \"" + path + "\"";
+    system(cmd.c_str());
+
+#elif __APPLE__
+    // macOS
+    std::string cmd = "open \"" + path + "\"";
+    system(cmd.c_str());
+
+#elif __linux__
+    // Linux
+    std::string cmd = "xdg-open \"" + path + "\"";
+    system(cmd.c_str());
+
+#else
+    std::cout << "Unsupported OS\n";
+#endif
+}
+int main()
+{
+    std::system("pip install pandas matplotlib seaborn");
+    std::cout << std::endl;
+    const int dataset_sizes[] = {10, 20, 30, 40, 50, 60, 70};
+
+    for (int size : dataset_sizes)
+    {
+        generate_report_insertion_sort(size, 0, "sort_by_age_report.csv");
+    }
+    std::system("python ./charts/visualizer.py sort_by_age_report.csv sort_by_age_plot.png");
+
+    std::cout << std::endl;
+    for (int size : dataset_sizes)
+    {
+        generate_report_insertion_sort(size, 1, "sort_by_name_report.csv");
+    }
+    std::system("python ./charts/visualizer.py sort_by_name_report.csv sort_by_name_plot.png");
+
+    std::cout << std::endl;
+    for (int size : dataset_sizes)
+    {
+        generate_report_insertion_sort(size, 2, "sort_by_name_age_report.csv");
+    }
+    std::system("python ./charts/visualizer.py sort_by_name_age_report.csv sort_by_name_age_plot.png");
+
+    openImage("./charts/sort_by_age_plot.png");
+    openImage("./charts/sort_by_name_plot.png");
+    openImage("./charts/sort_by_name_age_plot.png");
+
+    return 0;
 }
