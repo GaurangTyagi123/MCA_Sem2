@@ -52,8 +52,7 @@ if(__name__ == "__main__"):
     plot_name:str = 'sort_by_age_plot.png'
     
     if len(arg_list) > 1:
-        if type(arg_list[1]) == 'str' and type(arg_list[2]) == 'str':
-            report_name = str(arg_list[1])
-            plot_name = str(arg_list[2]);
+        report_name = str(arg_list[1])
+        plot_name = str(arg_list[2])
             
     generate_chart(report_name,plot_name)

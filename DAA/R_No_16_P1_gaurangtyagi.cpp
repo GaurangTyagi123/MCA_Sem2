@@ -1,4 +1,4 @@
-#include "sorting.h"
+#include "R_No16_P1_GaurangTyagi.h"
 #include <fstream>
 #include <sstream>
 #include <string>
@@ -24,7 +24,7 @@ Sorting_Algorithms::Sorting_Algorithms(int input_size) : n(input_size)
      * opens the file containing generated data and stores them in the data array,
      */
     data = new Person[n];
-    std::string generator_path = "python ./data/generator.py ";
+    std::string generator_path = "python3 ./data/generator.py ";
     generator_path.append(std::to_string(n));
     std::system(generator_path.c_str());
 
@@ -257,21 +257,21 @@ int main()
     {
         generate_report_insertion_sort(size, 0, "sort_by_age_report.csv");
     }
-    std::system("python ./charts/visualizer.py sort_by_age_report.csv sort_by_age_plot.png");
+    std::system("python3 ./charts/visualizer.py sort_by_age_report.csv sort_by_age_plot.png");
 
     std::cout << std::endl;
     for (int size : dataset_sizes)
     {
         generate_report_insertion_sort(size, 1, "sort_by_name_report.csv");
     }
-    std::system("python ./charts/visualizer.py sort_by_name_report.csv sort_by_name_plot.png");
+    std::system("python3 ./charts/visualizer.py sort_by_name_report.csv sort_by_name_plot.png");
 
     std::cout << std::endl;
     for (int size : dataset_sizes)
     {
         generate_report_insertion_sort(size, 2, "sort_by_name_age_report.csv");
     }
-    std::system("python ./charts/visualizer.py sort_by_name_age_report.csv sort_by_name_age_plot.png");
+    std::system("python3 ./charts/visualizer.py sort_by_name_age_report.csv sort_by_name_age_plot.png");
 
     openImage("./charts/sort_by_age_plot.png");
     openImage("./charts/sort_by_name_plot.png");

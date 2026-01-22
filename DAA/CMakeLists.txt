@@ -1,4 +1,3 @@
 add_executable(sorting
-    practicals/main.cpp
-    practicals/sorting.cpp
+    ./R_No_16_P1_gaurangtyagi.cpp
 )
