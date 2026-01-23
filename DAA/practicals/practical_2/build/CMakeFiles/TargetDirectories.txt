@@ -1,0 +1,3 @@
+/home/gaurang/d_drive/College Material/MCA_Sem2/DAA/practicals/practical_2/build/CMakeFiles/practical_2.dir
+/home/gaurang/d_drive/College Material/MCA_Sem2/DAA/practicals/practical_2/build/CMakeFiles/edit_cache.dir
+/home/gaurang/d_drive/College Material/MCA_Sem2/DAA/practicals/practical_2/build/CMakeFiles/rebuild_cache.dir

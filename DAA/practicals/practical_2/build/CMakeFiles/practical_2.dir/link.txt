@@ -1,0 +1,1 @@
+/usr/bin/c++ -rdynamic CMakeFiles/practical_2.dir/R_No_16_P2_GaurangTyagi.cpp.o CMakeFiles/practical_2.dir/main.cpp.o -o practical_2 
