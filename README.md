@@ -19,10 +19,50 @@
 
 # 2.)  Data Mining
 
-* ### Practical 1 : [magic gama telescope](./DM/magic_gamma.ipynb)
+* ### Practical 1 : [magic gama telescope](./DM/magic_gama_telescope/magic_gamma.ipynb)
     - `Lab 1: Exploratory Analysis and Class Imbalance Handling using the MAGIC Gamma Telescope Dataset`
         
             Import the MAGIC Gamma Telescope dataset from the UCI Machine Learning Repository. Perform exploratory data analysis by visualizing the correlation between each input feature and the target class. Further, demonstrate the effect of class imbalance by applying a Random Oversampling technique and illustrate its impact on the class distribution.
+
+* ### Practical 2 : [ChestXRay](./DM/chest_x_ray/chest_xray.ipynb)
+    - `Lab 2: Data Preprocessing and Attribute-Based Segregation of Medical Imaging Data`
+        
+            In this exercise, you will work with the COVID-19 Chest X-ray dataset available at:
+
+            https://github.com/ieee8023/covid-chestxray-dataset
+
+            The dataset includes a metadata file (metadata.csv) describing imaging attributes for each X-ray.
+
+            You are required to perform attribute-based data selection and transformation using the metadata.
+
+        - `Tasks`
+                1. Load metadata.csv using Pandas.
+
+                2. Select the attributes:
+
+                    - view (categorical attribute)
+
+                    - filename (object identifier)
+
+                3. Perform data cleaning by:
+
+                        - Removing records with missing or undefined view values.
+                        - Ignoring records corresponding to non-PA and non-AP views.
+
+                4. Perform data transformation and reduction by:
+
+                    - Creating two homogeneous subsets of the dataset corresponding to PA and AP chest X-ray views.
+
+                5. Using the cleaned metadata:
+
+                - Create two directories (PA, AP) in Google Drive.
+                - Populate them with the corresponding X-ray images from the images folder.
+
+                6. Generate a summary report showing:
+
+                    - Total images in the original dataset
+                    - Number of images retained after preprocessing
+                    - Distribution of PA and AP views
 
 # 3.) Operating System
 *  ### Practical 1: [Commands](./OS/Assignments/Assignment-1/Assignment-1-sol.pdf)  
@@ -40,3 +80,9 @@
         * Navigate to the 'js' Directory and create javascript file script.js 
 
         * Delete file Style.css
+*   ### Practical 2: [fork](./OS/Assignments/Assignment-2/Assignment-2-sol.pdf)
+     - Write a C++ program to demonstrate process creation using fork().The child process should print its PID and parentPID, perform a simple task (e.g.,counting from 1 to 5 with delay ), and then terminate.The parent process should wait for the child using wait() and display the child’s exit status.
+
+# 4.) Artificial Intelligence & Machine Learning
+*   ### Practical 1: [TicTacToe](./AI_ML/TicTacToe.cpp)
+     - Write a program which can play TicTacToe
