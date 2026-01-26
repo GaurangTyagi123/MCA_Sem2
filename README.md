@@ -12,10 +12,8 @@
             b.) Write a function to sort on names
 
             c.) Sort on age and then on names so that the ordering on age is maintained. i.e. For (Reeta, 18.3), (Reeta 17.8), (Geet, 18.3), the output should be  (Geet, 18.3), (Reeta 17.8), (Reeta, 18.3). I.e. If there are two people with the name Reeta their records should appear so that they are sorted on their ages
-
-<br>
-<br>
-<br>
+* ### Practical 2 : [Real World Application](./DAA/practicals/practical_2/main.cpp)
+    - `Program based on real life Application of Sorting: for example weather data or sort the edges of a graph on its weights - used in connectivity planning.`
 
 # 2.)  Data Mining
 
