@@ -84,5 +84,7 @@
      - Write a C++ program to demonstrate process creation using fork().The child process should print its PID and parentPID, perform a simple task (e.g.,counting from 1 to 5 with delay ), and then terminate.The parent process should wait for the child using wait() and display the child’s exit status.
 
 # 4.) Artificial Intelligence & Machine Learning
-*   ### Practical 1: [TicTacToe](./AI_ML/TicTacToe.cpp)
+*   ### Practical 1: [TicTacToe](./AI_ML/practical_1/TicTacToe.cpp)
      - Write a program which can play TicTacToe
+    ### Practical 2: [WaterJug](./AI_ML/practical_2/WaterJug.cpp)
+     - Write a program to solve the Water Jug problem.
