@@ -81,10 +81,9 @@ public:
      */
     void play(int limit)
     {
-        std::cout <<"| \x1b[1mBIG JUG " << "   |   \x1b[1m SMALL JUG" <<"  |  "<< std::endl;
         while (bigJug != limit)
         {
-            std::cout << "| \x1b[33mBIG JUG: " << bigJug << "L | \x1b[34m SMALL JUG: " << smallJug <<"L | "<< std::endl;
+            std::cout << "BIG JUG: " << bigJug << "L  SMALL JUG: " << smallJug <<"L"<< std::endl;
             if (bigJug == 0 && smallJug == 0)
             {
                 fillBigJug();
@@ -106,7 +105,7 @@ public:
                 transferToSmall();
             }
         }
-        std::cout << "| \x1b[33mBIG JUG: " << bigJug << "L | \x1b[34m SMALL JUG: " << smallJug <<"L | "<< std::endl;
+        std::cout << "BIG JUG: " << bigJug << "L SMALL JUG: " << smallJug <<"L"<< std::endl;
     }
 };
 int main()
@@ -125,7 +124,11 @@ int main()
 
     // Instantiate the water jug object
     WaterJug wj(bigJugSize, smallJugSize);
-    wj.play(playSize);
+    if(bigJugSize > 0 && smallJugSize > 0) {
+        wj.play(playSize);
+    }
+    else
+        std::cout << "Enter valid jug sizes" << std::endl;
 
     return 0;
 }

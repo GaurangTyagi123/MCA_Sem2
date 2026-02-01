@@ -2,7 +2,9 @@
 #include <sstream>
 #include <fstream>
 #include <iostream>
-
+/**
+ * @brief 
+ */
 std::vector<Coltype> parseSchema(const std::string &schema)
 {
     std::vector<Coltype> cols;
@@ -130,4 +132,21 @@ void insertionSort(std::vector<std::vector<value>> &data, const std::string &key
         }
         data[j + 1][sortKey] = key;
     }
+}
+
+
+int main()
+{
+    std::string schemaStr = "date:str,open:double,high:double,low:double,close:double,volume:str";
+    std::string file = "./data.csv";
+    std::string output = "./output.csv";
+    std::string key = "high";
+
+    std::vector<std::vector<value>> data;
+
+    readFile(file, schemaStr, data);
+    insertionSort(data, key, schemaStr);
+    writeFile(output, schemaStr, data);
+
+    return 0;
 }
