@@ -22,11 +22,11 @@ ReportType applySort(const std::string &schemaStr, const std::string &file, cons
 int main()
 {
     // parameters
-    std::string schemaStr = "date:str,close:double,volume:str,open:double,high:double,low:double";
-    std::string filePath = "./Data/practical_2_data/tesla_stock.csv";
-    std::string outputPath = "./Data/practical_2_data/sorted_tesla_stock.csv";
+    std::string schemaStr = "age:int,job:str,marital:str,education:str,default:str,balance:int,housing:str,loan:str,contact:str,day:str,month:str,duration:str,campaign:str,pdays:str,previous:int,poutcome:str,y:str";
+    std::string filePath = "./Data/practical_2_data/bank-full.csv";
+    std::string outputPath = "./Data/practical_2_data/bank.csv";
 
-    applySort(schemaStr, filePath, outputPath, "high");
+    applySort(schemaStr, filePath, outputPath, "age");
 
     return 0;
 }
