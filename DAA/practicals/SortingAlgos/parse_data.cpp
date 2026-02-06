@@ -60,11 +60,10 @@ void readFile(const std::string &filePath, const std::string &schemaStr, std::ve
     {
         std::string record;
 
-        while (getline(strm, record))
+        while (getline(strm, record,'\n'))
         {
             std::stringstream recordStream(record);
             std::string cell;
-            // std::cout << record << std::endl;
 
             std::vector<value> temp;
             size_t index = 0;
@@ -102,7 +101,7 @@ void writeFile(const std::string &file, const std::string &schemaStr, std::vecto
                            { strm << val << ','; },
                            cell);
             }
-            strm << '\r';
+            strm << '\n';
         }
         strm.close();
     }

@@ -1,5 +1,5 @@
 #include <iostream>
-#include "./SortingAlgos/insertion_sort.cpp"
+#include "./SortingAlgos/merge_sort.cpp"
 #include "./SortingAlgos/parse_data.cpp"
 #include <random>
 
@@ -8,11 +8,15 @@ ReportType applySort(const std::string &schemaStr, const std::string &file, cons
     // data array
     std::vector<std::vector<value>> data;
 
+    // Report
+    ReportType rep;
+
     // reading file
     readFile(file, schemaStr, data);
 
     // sorting data
-    ReportType rep = insertionSort(data, key, schemaStr);
+    mergeSort(data, schemaStr, key, rep,0,data.size()-1);
+    
 
     // writing output
     writeFile(output, schemaStr, data);
@@ -31,7 +35,7 @@ void generate_datasets(const std::vector<std::string> &names, const std::vector<
         for (int i = 0; i < size; i++)
         {
             size_t index = random() % 20;
-            strm << names[index] << "," << ages[index]<<"\r";
+            strm << names[index] << "," << ages[index] << "\r";
         }
         strm.close();
     }
@@ -86,8 +90,8 @@ int main()
     std::string schemaStr = "name:str,age:double";
     std::string filePath = "./Data/practical_1_data/input/";
     std::string outputPath = "./Data/practical_1_data/output/";
-    std::fstream strm("./Charts/insertion_sort/report.csv", std::ios::out);
-    strm << "dataset,age_comparisons,age_assignments,name_comparisons,name_assignments\r";
+    std::fstream strm("./Charts/merge_sort/report.csv", std::ios::out);
+    strm << "dataset,age_assignments,age_comparisons,name_assignments,name_comparisons\r";
 
     for (int i = 10; i <= 70; i += 10)
     {
@@ -102,7 +106,6 @@ int main()
             std::string file = filePath + std::to_string(i) + "_set.csv";
             std::string output = outputPath + "age/" + std::to_string(i) + "_set_age.csv";
             ReportType rep = applySort(schemaStr, file, output, "age");
-
             avg_comparisons_age += rep.comparisons;
             avg_assignments_age += rep.assignments;
         }
@@ -112,7 +115,6 @@ int main()
             std::string output = outputPath + "name/" + std::to_string(i) + "_set_name.csv";
 
             ReportType rep = applySort(schemaStr, file, output, "name");
-
             avg_comparisons_name += rep.comparisons;
             avg_assignments_name += rep.assignments;
         }
@@ -131,8 +133,9 @@ int main()
         strm << i << "," << avg_assignments_age << "," << avg_comparisons_age << "," << avg_assignments_name << "," << avg_comparisons_name << "\r";
     }
     strm.close();
-    std::system("python3 ./Charts/visualize.py ./Charts/insertion_sort/report.csv ./Charts/insertion_sort/report.png");
-    openImage("./Charts/insertion_sort/report.png");
+    std::system("python3 ./Charts/visualize.py ./Charts/merge_sort/report.csv ./Charts/merge_sort/report.png");
+    openImage("./Charts/merge_sort/report.png");
+    // read_pools();
 
     return 0;
 }

@@ -296,7 +296,7 @@ public:
 
 int main()
 {
-    SchedulingAlgorithms fcfs(4);
-    fcfs.roundRobin(20);
+    SchedulingAlgorithms scheduler(4);
+    scheduler.roundRobin(20);
     return 0;
 }

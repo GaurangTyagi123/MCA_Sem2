@@ -18,8 +18,9 @@ struct Coltype{
   Type type;
 };
 struct ReportType{
-    int comparisons;
-    int assignments;
+    long int comparisons = 0;
+    long int assignments = 0;
+    
 };
 
 std::vector<Coltype>

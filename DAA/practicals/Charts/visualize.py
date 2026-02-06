@@ -6,6 +6,7 @@ import seaborn as sns
 if __name__ == "__main__":
     arg_list = sys.argv 
     report_path = arg_list[1]
+    image_path = arg_list[2]
     report = pd.read_csv(report_path)
     
     
@@ -23,5 +24,5 @@ if __name__ == "__main__":
     plt.subplot(2,2,4)
     sns.lineplot(report,x='dataset',y='name_assignments',marker="*",color="violet")
     
-    plt.savefig("./Charts/insertion_sort/report.png")
+    plt.savefig(image_path)
     plt.plot()
