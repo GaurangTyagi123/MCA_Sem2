@@ -7,11 +7,11 @@ void merge(std::vector<std::vector<value>> &data, const std::string &schemaStr, 
     const size_t len_2 = (high - mid);
     std::vector<std::vector<value>> left(len_1), right(len_2);
 
-    for (int i = 0; i < len_1; i++)
+    for (size_t i = 0; i < len_1; i++)
     {
         left[i] = data[low + i];
     }
-    for (int j = 0; j < len_2; j++)
+    for (size_t j = 0; j < len_2; j++)
     {
         right[j] = data[mid + 1 + j];
     }
@@ -54,7 +54,7 @@ void mergeSort(std::vector<std::vector<value>> &data, const std::string &schemaS
 {
     if (low < high)
     {
-        int mid = low + (high - low) / 2;
+        size_t mid = low + (high - low) / 2;
         mergeSort(data, schemaStr, key, rep, low, mid);
         mergeSort(data, schemaStr, key, rep, mid + 1, high);
         merge(data, schemaStr, key,rep, low, mid, high);

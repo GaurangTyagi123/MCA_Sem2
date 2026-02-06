@@ -1,5 +1,5 @@
 #include <iostream>
-#include "./SortingAlgos/merge_sort.cpp"
+#include "./SortingAlgos/quick_sort.cpp"
 #include "./SortingAlgos/parse_data.cpp"
 
 ReportType applySort(const std::string &schemaStr, const std::string &file, const std::string &output, const std::string &key)
@@ -16,7 +16,7 @@ ReportType applySort(const std::string &schemaStr, const std::string &file, cons
 
     // sorting data
     std::cout << "SORTING DATA BASED ON:" << key << std::endl;
-    mergeSort(data, schemaStr, key, rep, 0, data.size() - 1);
+    quickSort(data, schemaStr, key, rep, 0, data.size() - 1);
 
     // writing output
     std::cout << "WRITING THE OUTPUT" << std::endl;
