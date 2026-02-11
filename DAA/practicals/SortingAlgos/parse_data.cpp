@@ -38,7 +38,6 @@ std::vector<Coltype> parseSchema(const std::string &schema)
 value parseValue(const std::string &value, size_t pos, const std::string &schemaStr)
 {
     std::vector<Coltype> schema = parseSchema(schemaStr);
-    
     switch (schema[pos].type)
     {
     case Type::INT:
@@ -60,7 +59,7 @@ void readFile(const std::string &filePath, const std::string &schemaStr, std::ve
     {
         std::string record;
 
-        while (getline(strm, record,'\n'))
+        while (getline(strm, record,'\r'))
         {
             std::stringstream recordStream(record);
             std::string cell;
