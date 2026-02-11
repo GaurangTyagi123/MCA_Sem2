@@ -1,3 +1,15 @@
+# Assignment 5
+
+## Q1. HRRN (Highest Response Ratio Next ) Write a C/C++ program that:
+    1. Reads the number of processes (Sample input)
+    2. Accepts arrival time and burst time for each process (Sample input)
+    3. Schedules processes using HRRN 
+    4. Calculates WT and TAT
+    5. Displays results in tabular form
+    6. Calculate and display Average WT and TAT
+
+## CODE
+```cpp
 #include <iostream>
 #include <vector>
 #include <sstream>
@@ -369,3 +381,7 @@ int main()
     scheduler.HRRF();
     return 0;
 }
+```
+## OUTPUT
+
+![1770734072480](image/ass5/1770734072480.png)
