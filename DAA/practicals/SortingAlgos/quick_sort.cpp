@@ -28,10 +28,23 @@ size_t part(std::vector<std::vector<value>> &data, const std::string &schemaStr,
     }
     return right;
 }
+
 void quickSort(std::vector<std::vector<value>> &data, const std::string &schemaStr, const std::string &key, ReportType &rep, const size_t &low, const size_t &high)
 {
     if (low < high)
     {
+        size_t pivotIndex = part(data, schemaStr, key, rep, low, high);
+        quickSort(data, schemaStr, key, rep, low, pivotIndex);
+        quickSort(data, schemaStr, key, rep, pivotIndex + 1, high);
+    }
+}
+void randomizedQuickSort(std::vector<std::vector<value>> &data, const std::string &schemaStr, const std::string &key, ReportType &rep, const size_t &low, const size_t &high)
+{
+    srand(time(0));
+    if (low < high)
+    {
+        size_t randomPivotIndex = random() % data.size();
+        std::swap(data[randomPivotIndex], data[low]);
         size_t pivotIndex = part(data, schemaStr, key, rep, low, high);
         quickSort(data, schemaStr, key, rep, low, pivotIndex);
         quickSort(data, schemaStr, key, rep, pivotIndex + 1, high);

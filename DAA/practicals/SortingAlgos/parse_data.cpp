@@ -100,7 +100,7 @@ void writeFile(const std::string &file, const std::string &schemaStr, std::vecto
                            { strm << val << ','; },
                            cell);
             }
-            strm << '\n';
+            strm << '\r';
         }
         strm.close();
     }

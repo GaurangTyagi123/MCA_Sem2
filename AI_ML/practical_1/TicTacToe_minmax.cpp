@@ -46,64 +46,88 @@ public:
         }
         return true;
     }
-    int checkRow(const size_t &index, const bool &player)
+    int checkRow(const size_t &index)
     {
-        int score = 0;
+        int score_cross = 0;
+        int score_zero = 0;
         for (int i = 0; i < dimension; i++)
         {
-            if (player && board[index][i].state == State::CROSS)
-                score++;
+            if (board[index][i].state == State::CROSS)
+                score_cross++;
 
-            else if (!player && board[index][i].state == State::ZERO)
-                --score;
+            else if (board[index][i].state == State::ZERO)
+                --score_zero;
         }
-        return score;
+        if (score_cross == 3)
+            return score_cross;
+        else if (score_zero == -3)
+            return score_zero;
+        else
+            return 0;
     }
-    int checkColumn(const size_t &index, const bool &player)
+    int checkColumn(const size_t &index)
     {
-        int score = 0;
+        int score_cross = 0;
+        int score_zero = 0;
         for (int i = 0; i < dimension; i++)
         {
-            if (player && board[i][index].state == State::CROSS)
-                score++;
+            if (board[i][index].state == State::CROSS)
+                score_cross++;
 
-            else if (!player && board[i][index].state == State::ZERO)
-                --score;
+            else if (board[i][index].state == State::ZERO)
+                --score_zero;
         }
-        return score;
+        if (score_cross == 3)
+            return score_cross;
+        else if (score_zero == -3)
+            return score_zero;
+        else
+            return 0;
     }
-    int checkPrincipleDiagonal(const bool &player)
+    int checkPrincipleDiagonal()
     {
-        int score = 0;
+        int score_cross = 0;
+        int score_zero = 0;
         for (int i = 0; i < dimension; i++)
         {
-            if (player && board[i][i].state == State::CROSS)
-                ++score;
-            else if (!player && board[i][i].state == State::ZERO)
-                --score;
+            if (board[i][i].state == State::CROSS)
+                ++score_cross;
+            else if (board[i][i].state == State::ZERO)
+                --score_zero;
         }
-        return score;
+        if (score_cross == 3)
+            return score_cross;
+        else if (score_zero == -3)
+            return score_zero;
+        else
+            return 0;
     }
-    int checkAntiDiagonalScore(const bool &player)
+    int checkAntiDiagonalScore()
     {
-        int score = 0;
+        int score_cross = 0;
+        int score_zero = 0;
         for (int i = 0; i < dimension; i++)
         {
-            if (player && board[i][dimension - i - 1].state == State::CROSS)
-                ++score;
-            else if (!player && board[i][dimension - i - 1].state == State::ZERO)
-                --score;
+            if (board[i][dimension - i - 1].state == State::CROSS)
+                ++score_cross;
+            else if (board[i][dimension - i - 1].state == State::ZERO)
+                --score_zero;
         }
-        return score;
+        if (score_cross == 3)
+            return score_cross;
+        else if (score_zero == -3)
+            return score_zero;
+        else
+            return 0;
     }
-    int calculateScore(const bool &player)
+    int calculateScore()
     {
         for (int i = 0; i < dimension; i++)
         {
-            int rowScore = checkRow(i, player);
-            int columnScore = checkColumn(i, player);
-            int principleDiagonalScore = checkPrincipleDiagonal(player);
-            int antiDiagonalScore = checkAntiDiagonalScore(player);
+            int rowScore = checkRow(i);
+            int columnScore = checkColumn(i);
+            int principleDiagonalScore = checkPrincipleDiagonal();
+            int antiDiagonalScore = checkAntiDiagonalScore();
 
             if (rowScore == -dimension || columnScore == -dimension || principleDiagonalScore == -dimension || antiDiagonalScore == -dimension)
                 return -1;
@@ -114,7 +138,7 @@ public:
     }
     int minimax(const bool &maximizing, int depth)
     {
-        int score = calculateScore(maximizing);
+        int score = calculateScore();
         if (score != 0 || isFull())
         {
             return score;
@@ -137,7 +161,7 @@ public:
                         }
                     }
                 }
-                return bestScore*(depth + 1);
+                return bestScore;
             }
             else
             {
@@ -155,11 +179,25 @@ public:
                         }
                     }
                 }
-                return bestScore*(depth + 1);
+                return bestScore;
             }
         }
     }
-    void play()
+    std::pair<size_t, size_t> playUser()
+    {
+        size_t cellIndex = 0;
+        std::cout << "Enter a cell number (1-9): ";
+        std::cin >> cellIndex;
+
+        size_t indexJ = cellIndex % dimension;
+        size_t indexI = (cellIndex - indexJ) / dimension;
+
+        if (board[indexI][indexJ].state == State::BLANK)
+            board[indexI][indexJ].state = State::ZERO;
+        std::pair<size_t, size_t> p = {indexI, indexJ};
+        return p;
+    }
+    std::pair<size_t, size_t> play()
     {
         int bestScore = INT_MIN;
         int bestI = -1, bestJ = -1;
@@ -171,7 +209,7 @@ public:
                 if (board[i][j].state == State::BLANK)
                 {
                     board[i][j].state = State::CROSS;
-                    int score = minimax(false, 8);
+                    int score = minimax(false, 9);
                     board[i][j].state = State::BLANK;
 
                     if (score > bestScore)
@@ -183,8 +221,9 @@ public:
                 }
             }
         }
-
         board[bestI][bestJ].state = State::CROSS;
+        std::pair<size_t, size_t> p = {bestI, bestJ};
+        return p;
     }
 
     void displayBoard()
@@ -209,8 +248,13 @@ public:
 int main()
 {
     TicTacToe board;
-    board.play();
-    board.displayBoard();
+
+    do
+    {
+        board.play();
+        board.displayBoard();
+        board.playUser();
+    } while (!board.isFull());
 
     return 0;
 }
