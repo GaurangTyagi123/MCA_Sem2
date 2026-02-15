@@ -1,0 +1,112 @@
+\documentclass[a4paper,12pt]{article}
+
+% Packages
+\usepackage[margin=1in]{geometry}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage[table]{xcolor}
+\usepackage{array}
+\usepackage{booktabs}
+
+\title{Demonstration of Lists, Tables, and Multi-Column Layouts}
+\author{Gaurang Tyagi}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{1. Lists Demonstration}
+
+\subsection*{Bulleted List (Shopping List)}
+\begin{itemize}
+    \item Rice
+    \item Milk
+    \item Bread
+    \item Eggs
+    \item Vegetables
+    \item Cooking Oil
+\end{itemize}
+
+\subsection*{Numbered List (Steps to Submit an Assignment)}
+\begin{enumerate}
+    \item Open Overleaf and create a new project.
+    \item Set up the document class and required packages.
+    \item Write the content using proper \LaTeX \ formatting.
+    \item Compile the document to check for errors.
+    \item Download and submit the final PDF.
+\end{enumerate}
+
+\section*{2. Student Grades Table}
+
+\renewcommand{\arraystretch}{1.3} % Increase row height
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\multicolumn{4}{|c|}{\textbf{Semester Grade Report}} \\ \hline
+\rowcolor{gray!30}
+\textbf{Name} & \textbf{Subject} & \textbf{Marks} & \textbf{Grade} \\ \hline
+
+\multirow{2}{*}{Gaurang Tyagi} 
+    & Mathematics & 92 & A+ \\ \cline{2-4}
+    & Physics     & 85 & A  \\ \hline
+
+\rowcolor{gray!15}
+Manas More 
+    & Chemistry   & 88 & A  \\ \hline
+
+Ravish Ranjan
+    & English     & 76 & B+ \\ \hline
+
+Brian
+    & Computer Science & 95 & A+ \\ \hline
+
+\multicolumn{2}{|c|}{\textbf{Average Marks}} & 
+\multicolumn{2}{c|}{\textbf{87.2}} \\ \hline
+\end{tabular}
+\end{center}
+
+% -----------------------------
+% Multi-column Section
+% -----------------------------
+\section*{3. Newsletter Section}
+
+\begin{center}
+    {\LARGE \textbf{Monthly Tech Newsletter}} \\
+    \vspace{0.5em}
+\end{center}
+
+\begin{multicols}{2}
+
+\subsection*{Article 1: Rise of Artificial Intelligence}
+
+Artificial Intelligence (AI) continues to reshape industries
+across the globe. From healthcare diagnostics to autonomous
+vehicles, AI-powered systems are improving efficiency and
+accuracy. Machine learning algorithms now process vast
+amounts of data in seconds, enabling smarter decisions.
+
+Universities are introducing AI-focused programs to prepare
+students for emerging careers. Ethical concerns and data
+privacy remain important discussion topics. As innovation
+continues, responsible development becomes essential.
+
+\columnbreak
+
+\subsection*{Article 2: Importance of Cybersecurity}
+
+With increasing digital transformation, cybersecurity has
+become a top priority for organizations. Cyber threats such
+as ransomware and phishing attacks are growing rapidly.
+Strong encryption and multi-factor authentication are now
+standard security measures.
+
+Governments and private companies are investing heavily in
+cyber defense strategies. Awareness training helps users
+recognize potential threats. A proactive security approach
+ensures safer digital environments for everyone.
+
+\end{multicols}
+
+\end{document}
