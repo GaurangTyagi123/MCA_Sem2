@@ -16,7 +16,7 @@ ReportType applySort(const std::string &schemaStr, const std::string &file, cons
 
     // sorting data
     std::cout << "SORTING DATA BASED ON:" << key << std::endl;
-    randomizedQuickSort(data, key, schemaStr, rep, 0, data.size() - 1);
+    randomizedQuickSort(data, schemaStr, key, rep, 0, data.size() - 1);
 
     // writing output
     std::cout << "WRITING THE OUTPUT" << std::endl;
