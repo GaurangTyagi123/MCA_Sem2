@@ -160,13 +160,16 @@
 
 Calculate and display Average WT and TAT
 # 4.) Artificial Intelligence & Machine Learning
-*   ### Practical 1: [TicTacToe](./AI_ML/practical_1/TicTacToe.cpp)
+*   ### Practical 1: [TicTacToe](./AI_ML/practical_1)
      - Write a program which can play TicTacToe
+     - Write a prgram which can play TicTacToe (using minimax)
+     - Write a prgram which can play TicTacToe (using breadth first search)
+     - Write a prgram which can play TicTacToe (using depth first search)
     ### Practical 2: [WaterJug](./AI_ML/practical_2/WaterJug.cpp)
      - Write a program to solve the Water Jug problem.
 
 # 5.) SEC 
-* ### Practical 2: [Basics](./SEC/practical-1/GaurangTyagi_16_P1.pdf)
+* ### Practical 1: [Basics](./SEC/practical-1/GaurangTyagi_16_P1.pdf)
     - Create a LaTeX document in Overleaf that demonstrates basic document setup
         and text formatting. Set the page size to A4, the orientation of the first page to landscape and
         the rest to portrait, the margins to 1 inch on all sides using the appropriate package. Add a
@@ -177,7 +180,7 @@ Calculate and display Average WT and TAT
         the document into at least two sections, two subsections, and two subsubsections, ensuring
         consistent formatting with proper sectioning commands rather than manual styling. Submit both
         the .tex file and the PDF file.
-* ### Practical 3: [Table](./SEC/practical-2/GaurangTyagi_16_P2.pdf)
+* ### Practical 2: [Table](./SEC/practical-2/GaurangTyagi_16_P2.pdf)
     - Create a LaTeX document in Overleaf that demonstrates the use of lists, tables,
         and multi-column layouts. First, create one bulleted list (e.g., a shopping list or event agenda)
         and one numbered list (e.g., steps in a process), each containing at least five items. Next, design
@@ -190,3 +193,8 @@ Calculate and display Average WT and TAT
 
         (8-10 lines each). Ensure proper formatting, alignment, and clean coding practices. Submit
         both the .tex source file and the compiled PDF.
+* ### Practical 3: [Equations](./SEC/practical-3/GaurangTyagi_16_P3.pdf)
+    - Typeset the given equations using proper LaTeX formatting. Ensure that all
+    equations are correctly aligned, symbols are appropriately formatted, and mathematical
+    notation follows standard conventions. Submit both the source file (.tex) and the compiled
+    output file (.pdf).
