@@ -1,0 +1,67 @@
+\documentclass{article}
+
+\usepackage{graphicx} 
+\usepackage{wrapfig}   
+\usepackage{cite}       
+
+\title{Figures, Graphics,
+References and Citations in LaTeX}
+\author{Gaurang Tyagi}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+Figures and graphical illustrations play an important role in technical
+documents. They help readers understand complex concepts quickly by
+presenting information visually. Diagrams, charts, and images allow
+authors to communicate data and processes more effectively than plain
+text alone \cite{tufte2001}.
+
+Visual representations are particularly useful in scientific and
+engineering reports. A well-designed figure can summarize large amounts
+of information in a concise and intuitive way. This improves both the
+clarity and readability of the document \cite{lamport1994}.
+
+\section{Example Figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{fire&blood.jpg}
+\caption{Symbol of house of the dragon}
+\label{fig:example}
+\end{figure}
+
+As shown in Figure~\ref{fig:example}, graphical elements provide a
+visual reference that helps readers grasp the context of the discussion.
+Figures are typically centered, numbered automatically by LaTeX, and
+accompanied by captions that describe their content.
+
+\section{Text Wrapping Example}
+
+\begin{wrapfigure}{r}{0.4\textwidth}
+\centering
+\includegraphics[width=0.35\textwidth]{fire&blood.jpg}
+\caption{Wrapped image example}
+\label{fig:wrap}
+\end{wrapfigure}
+
+Text wrapping around images is another useful formatting technique.
+It allows the document to use space efficiently while still presenting
+visual content. When figures are placed alongside text, readers can
+refer to them without interrupting the flow of reading.
+
+\section{Conclusion}
+
+In technical writing, figures enhance comprehension, improve document
+structure, and make information easier to interpret. When combined with
+clear captions and proper references, they significantly improve the
+quality of technical communication.
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}
