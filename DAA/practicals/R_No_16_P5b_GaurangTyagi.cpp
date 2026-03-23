@@ -1,6 +1,7 @@
 #include <iostream>
 #include "./SortingAlgos/quick_sort.cpp"
 #include "./SortingAlgos/parse_data.cpp"
+#include <chrono>
 
 ReportType applySort(const std::string &schemaStr, const std::string &file, const std::string &output, const std::string &key)
 {
@@ -16,7 +17,11 @@ ReportType applySort(const std::string &schemaStr, const std::string &file, cons
 
     // sorting data
     std::cout << "SORTING DATA BASED ON:" << key << std::endl;
+    auto start = std::chrono::high_resolution_clock::now();
     randomizedQuickSort(data, schemaStr, key, rep, 0, data.size() - 1);
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> duration = end - start;
+    rep.time = duration.count();
 
     // writing output
     std::cout << "WRITING THE OUTPUT" << std::endl;
@@ -53,7 +58,7 @@ void generate_datasets(const std::string &schemaStr, const std::string &filepath
     {
         std::cout << "ERROR: cannot open file" << std::endl;
     }
-    const std::vector<int> sizes = {10, 20, 30, 40, 50, 60, 70};
+    const std::vector<int> sizes = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
     for (const int &size : sizes)
     {
         srand(time(0));
@@ -107,7 +112,7 @@ int main()
     std::fstream strm("./Charts/randomized_quick_sort/report_5b.csv", std::ios::out);
     strm << "dataset,comparisons,assignments,time\r";
 
-    for (int i = 10; i <= 70; i += 10)
+    for (int i = 10; i <= 100; i += 10)
     {
         int avg_comparisons = 0;
         int avg_assignments = 0;

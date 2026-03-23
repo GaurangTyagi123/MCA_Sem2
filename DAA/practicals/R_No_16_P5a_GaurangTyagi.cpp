@@ -2,6 +2,7 @@
 #include "./SortingAlgos/quick_sort.cpp"
 #include "./SortingAlgos/parse_data.cpp"
 #include <random>
+#include <chrono>
 
 ReportType applySort(const std::string &schemaStr, const std::string &file, const std::string &output, const std::string &key)
 {
@@ -15,7 +16,11 @@ ReportType applySort(const std::string &schemaStr, const std::string &file, cons
     readFile(file, schemaStr, data,false);
 
     // sorting data
+    auto start = std::chrono::high_resolution_clock::now();
     randomizedQuickSort(data, schemaStr, key, rep, 0, data.size() - 1);
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> duration = end - start;
+    rep.time = duration.count();
 
     // writing output
     writeFile(output, schemaStr, data);
@@ -25,7 +30,7 @@ ReportType applySort(const std::string &schemaStr, const std::string &file, cons
 
 void generate_datasets(const std::vector<std::string> &names, const std::vector<double> &ages)
 {
-    std::vector<int> sizes = {10, 20, 30, 40, 50, 60, 70};
+    std::vector<int> sizes = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
     for (int &size : sizes)
     {
         srand(time(0));
@@ -92,7 +97,7 @@ int main()
     std::fstream strm("./Charts/randomized_quick_sort/report.csv", std::ios::out);
     strm << "dataset,age_assignments,age_comparisons,name_assignments,name_comparisons,age_time,name_time\r";
 
-    for (int i = 10; i <= 70; i += 10)
+    for (int i = 10; i <= 100; i += 10)
     {
         int avg_comparisons_age = 0;
         int avg_assignments_age = 0;

@@ -50,7 +50,7 @@ void generate_datasets(const std::string &schemaStr, const std::string &filepath
     {
         std::cout << "ERROR: cannot open file" << std::endl;
     }
-    const std::vector<int> sizes = {10, 20, 30, 40, 50, 60, 70};
+    const std::vector<int> sizes = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
     for (const int &size : sizes)
     {
         srand(time(0));
@@ -67,7 +67,7 @@ void generate_datasets(const std::string &schemaStr, const std::string &filepath
                            { outStrm << val << ','; },
                            cell);
             }
-            outStrm << '\r';
+            outStrm << '\n';
         }
         strm.close();
     }
@@ -96,7 +96,7 @@ void openImage(const std::string &path)
 
 int main()
 {
-    std::system("pip install pandas matplotlib seaborn");
+    // std::system("pip install pandas matplotlib seaborn");
     // parameters
     std::string schemaStr = "date:str,open:double,volume:int,high:double,low:double,average:double";
     std::string filePath = "./Data/practical_2_data/input/";
@@ -104,7 +104,7 @@ int main()
     std::fstream strm("./Charts/insertion_sort/report_2a.csv", std::ios::out);
     strm << "dataset,comparisons,assignments,time\r";
 
-    for (int i = 10; i <= 70; i += 10)
+    for (int i = 10; i <= 100; i += 10)
     {
         int avg_comparisons = 0;
         int avg_assignments = 0;
@@ -124,7 +124,7 @@ int main()
         avg_comparisons /= 10;
         avg_time /= 10;
 
-        strm << i << "," << avg_assignments << "," << avg_comparisons << time << "," << "\r";
+        strm << i << "," << avg_assignments << "," << avg_comparisons << "," << avg_time << "\r";
     }
     strm.close();
     std::system("python3 ./Charts/visualize_2.py ./Charts/insertion_sort/report_2a.csv ./Charts/insertion_sort/report_2a.png");
