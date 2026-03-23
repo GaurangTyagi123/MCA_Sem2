@@ -20,7 +20,7 @@ struct Coltype{
 struct ReportType{
     long int comparisons = 0;
     long int assignments = 0;
-    
+    double time = 0;
 };
 
 std::vector<Coltype>

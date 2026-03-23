@@ -9,7 +9,7 @@ ReportType applySort(const std::string &schemaStr, const std::string &file, cons
 
     // reading file
     std::cout << "READING INPUT FILE" << std::endl;
-    readFile(file, schemaStr, data);
+    readFile(file, schemaStr, data, false);
 
     // sorting data
     std::cout << "SORTING DATA BASED ON:" << key << std::endl;
@@ -102,12 +102,13 @@ int main()
     std::string filePath = "./Data/practical_2_data/input/";
     std::string outputPath = "./Data/practical_2_data/output/";
     std::fstream strm("./Charts/insertion_sort/report_2a.csv", std::ios::out);
-    strm << "dataset,comparisons,assignments\r";
+    strm << "dataset,comparisons,assignments,time\r";
 
     for (int i = 10; i <= 70; i += 10)
     {
         int avg_comparisons = 0;
         int avg_assignments = 0;
+        double avg_time = 0;
 
         for (int j = 0; j < 10; j++)
         {
@@ -117,11 +118,13 @@ int main()
 
             avg_comparisons += rep.comparisons;
             avg_assignments += rep.assignments;
+            avg_time += rep.time;
         }
         avg_assignments /= 10;
         avg_comparisons /= 10;
+        avg_time /= 10;
 
-        strm << i << "," << avg_assignments << "," << avg_comparisons << "\r";
+        strm << i << "," << avg_assignments << "," << avg_comparisons << time << "," << "\r";
     }
     strm.close();
     std::system("python3 ./Charts/visualize_2.py ./Charts/insertion_sort/report_2a.csv ./Charts/insertion_sort/report_2a.png");

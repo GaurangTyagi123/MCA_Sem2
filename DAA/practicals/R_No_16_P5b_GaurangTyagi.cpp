@@ -12,7 +12,7 @@ ReportType applySort(const std::string &schemaStr, const std::string &file, cons
 
     // reading file
     std::cout << "READING INPUT FILE" << std::endl;
-    readFile(file, schemaStr, data);
+    readFile(file, schemaStr, data, false);
 
     // sorting data
     std::cout << "SORTING DATA BASED ON:" << key << std::endl;
@@ -105,12 +105,13 @@ int main()
     std::string filePath = "./Data/practical_2_data/input/";
     std::string outputPath = "./Data/practical_2_data/output/";
     std::fstream strm("./Charts/randomized_quick_sort/report_5b.csv", std::ios::out);
-    strm << "dataset,comparisons,assignments\r";
+    strm << "dataset,comparisons,assignments,time\r";
 
     for (int i = 10; i <= 70; i += 10)
     {
         int avg_comparisons = 0;
         int avg_assignments = 0;
+        double avg_time = 0;
 
         for (int j = 0; j < 10; j++)
         {
@@ -120,11 +121,13 @@ int main()
 
             avg_comparisons += rep.comparisons;
             avg_assignments += rep.assignments;
+            avg_time += rep.time;
         }
         avg_assignments /= 10;
         avg_comparisons /= 10;
+        avg_time /= 10;
 
-        strm << i << "," << avg_assignments << "," << avg_comparisons << "\r";
+        strm << i << "," << avg_assignments << "," << avg_comparisons << "," << avg_time << "\r";
     }
     strm.close();
     std::system("python3 ./Charts/visualize_2.py ./Charts/randomized_quick_sort/report_5b.csv ./Charts/randomized_quick_sort/report_5b.png");

@@ -9,7 +9,7 @@ ReportType applySort(const std::string &schemaStr, const std::string &file, cons
 
     // reading file
     std::cout << "READING INPUT FILE" << std::endl;
-    readFile(file, schemaStr, data);
+    readFile(file, schemaStr, data,false);
 
     // sorting data
     std::cout << "SORTING DATA BASED ON:" << key << std::endl;

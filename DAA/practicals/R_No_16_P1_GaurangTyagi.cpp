@@ -9,7 +9,7 @@ ReportType applySort(const std::string &schemaStr, const std::string &file, cons
     std::vector<std::vector<value>> data;
 
     // reading file
-    readFile(file, schemaStr, data);
+    readFile(file, schemaStr, data, false);
 
     // sorting data
     ReportType rep = insertionSort(data, key, schemaStr);
@@ -31,7 +31,7 @@ void generate_datasets(const std::vector<std::string> &names, const std::vector<
         for (int i = 0; i < size; i++)
         {
             size_t index = random() % 20;
-            strm << names[index] << "," << ages[index]<<"\r";
+            strm << names[index] << "," << ages[index] << "\r";
         }
         strm.close();
     }
@@ -87,7 +87,7 @@ int main()
     std::string filePath = "./Data/practical_1_data/input/";
     std::string outputPath = "./Data/practical_1_data/output/";
     std::fstream strm("./Charts/insertion_sort/report.csv", std::ios::out);
-    strm << "dataset,age_comparisons,age_assignments,name_comparisons,name_assignments\r";
+    strm << "dataset,age_comparisons,age_assignments,name_comparisons,name_assignments,age_time,name_time\r";
 
     for (int i = 10; i <= 70; i += 10)
     {
@@ -97,6 +97,9 @@ int main()
         int avg_comparisons_name = 0;
         int avg_assignments_name = 0;
 
+        double avg_time_age = 0;
+        double avg_time_name = 0;
+
         for (int j = 0; j < 10; j++)
         {
             std::string file = filePath + std::to_string(i) + "_set.csv";
@@ -105,6 +108,7 @@ int main()
 
             avg_comparisons_age += rep.comparisons;
             avg_assignments_age += rep.assignments;
+            avg_time_age += rep.time;
         }
         for (int j = 0; j < 10; j++)
         {
@@ -115,6 +119,7 @@ int main()
 
             avg_comparisons_name += rep.comparisons;
             avg_assignments_name += rep.assignments;
+            avg_time_name += rep.time;
         }
         for (int j = 0; j < 10; j++)
         {
@@ -127,8 +132,10 @@ int main()
         avg_comparisons_age /= 10;
         avg_assignments_name /= 10;
         avg_comparisons_name /= 10;
+        avg_time_age /= 10;
+        avg_time_name /= 10;
 
-        strm << i << "," << avg_assignments_age << "," << avg_comparisons_age << "," << avg_assignments_name << "," << avg_comparisons_name << "\r";
+        strm << i << "," << avg_assignments_age << "," << avg_comparisons_age << "," << avg_assignments_name << "," << avg_comparisons_name << "," << avg_time_age << "," << avg_time_name << "\r";
     }
     strm.close();
     std::system("python3 ./Charts/visualize.py ./Charts/insertion_sort/report.csv ./Charts/insertion_sort/report.png");

@@ -51,16 +51,21 @@ value parseValue(const std::string &value, size_t pos, const std::string &schema
     }
 }
 
-void readFile(const std::string &filePath, const std::string &schemaStr, std::vector<std::vector<value>> &data)
+void readFile(const std::string &filePath, const std::string &schemaStr, std::vector<std::vector<value>> &data,const bool &skipFirst)
 {
     std::fstream strm(filePath, std::ios::in);
+    bool skip = skipFirst;
 
     if (strm.is_open())
     {
         std::string record;
 
-        while (getline(strm, record,'\r'))
+        while (getline(strm, record,'\n'))
         {
+            if(skip){
+                skip = false;
+                continue;
+            }
             std::stringstream recordStream(record);
             std::string cell;
 
@@ -89,7 +94,7 @@ void writeFile(const std::string &file, const std::string &schemaStr, std::vecto
     {
         strm << col.name << ",";
     }
-    strm << "\r";
+    strm << "\n";
     if (strm.is_open())
     {
         for (auto &rec : data)
@@ -100,7 +105,7 @@ void writeFile(const std::string &file, const std::string &schemaStr, std::vecto
                            { strm << val << ','; },
                            cell);
             }
-            strm << '\r';
+            strm << '\n';
         }
         strm.close();
     }
