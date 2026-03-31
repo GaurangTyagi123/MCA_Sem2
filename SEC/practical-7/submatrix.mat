@@ -1,0 +1,34 @@
+A = reshape(1:24, 6, 4)';
+B = A(1:3, 1:3);
+B_T = B';
+detB = det(B);
+
+if detB == 0
+    disp('Matrix is Singular');
+else
+    disp('Matrix is Non-Singular');
+end
+
+if detB ~= 0
+    B_inv = inv(B);
+else
+    disp('Inverse does not exist');
+end
+
+eigB = eig(B);
+
+disp('Submatrix B:');
+disp(B);
+
+disp('Transpose:');
+disp(B_T);
+
+disp('Determinant:');
+disp(detB);
+
+disp('Inverse:');
+disp(B_inv);
+
+disp('Eigenvalues:');
+disp(eigB);
+

@@ -1,0 +1,36 @@
+clc
+clear
+
+% Scalar
+a = 10;
+
+% Row vector
+v1 = [1 2 3 4 5];
+
+% Column vector
+v2 = [1;2;3;4;5];
+
+% Complex number
+z = 3 + 4i;
+
+% Type conversion
+a_double = double(a);
+a_single = single(a);
+a_int = int32(a);
+
+% Precision comparison
+x_double = double(1/3);
+x_single = single(1/3);
+
+disp('Double precision:')
+disp(x_double)
+
+disp('Single precision:')
+disp(x_single)
+
+% Workspace info
+who
+whos
+
+% Help command
+help sqrt

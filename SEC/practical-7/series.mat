@@ -1,0 +1,35 @@
+% Arithmetic progression
+r1 = 2:2:14;
+
+% Geometric progression
+r2 = 2 * 3.^(0:6);
+
+% Fibonacci
+r3 = zeros(1,7);
+r3(1:2) = [1 1];
+for i=3:7
+    r3(i) = r3(i-1)+r3(i-2);
+end
+
+% Prime numbers
+r4 = primes(20);
+r4 = r4(1:7);
+
+% Alternating signs
+r5 = (-1).^(0:6).*(1:7);
+
+% Matrix
+M = [r1;r2;r3;r4;r5];
+
+disp(M)
+
+% reshape attempt
+if mod(sqrt(numel(M)),1)==0
+    S = reshape(M,sqrt(numel(M)),sqrt(numel(M)));
+else
+    S = reshape(M(1:25),5,5);
+end
+
+% eigenvalues
+eig_new = eig(S);
+disp(eig_new)

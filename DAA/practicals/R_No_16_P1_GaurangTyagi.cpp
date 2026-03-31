@@ -22,7 +22,7 @@ ReportType applySort(const std::string &schemaStr, const std::string &file, cons
 
 void generate_datasets(const std::vector<std::string> &names, const std::vector<double> &ages)
 {
-    std::vector<int> sizes = {10, 20, 30, 40, 50, 60, 70};
+    std::vector<int> sizes = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
     for (int &size : sizes)
     {
         srand(time(0));
@@ -81,7 +81,7 @@ void openImage(const std::string &path)
 }
 int main()
 {
-    std::system("pip install pandas matplotlib seaborn");
+    // std::system("pip install pandas matplotlib seaborn");
     // parameters
     std::string schemaStr = "name:str,age:double";
     std::string filePath = "./Data/practical_1_data/input/";
@@ -89,7 +89,7 @@ int main()
     std::fstream strm("./Charts/insertion_sort/report.csv", std::ios::out);
     strm << "dataset,age_comparisons,age_assignments,name_comparisons,name_assignments,age_time,name_time\r";
 
-    for (int i = 10; i <= 70; i += 10)
+    for (int i = 10; i <= 100; i += 10)
     {
         int avg_comparisons_age = 0;
         int avg_assignments_age = 0;
