@@ -17,10 +17,10 @@ ReportType applySort(const std::string &schemaStr, const std::string &file, cons
 
     // sorting data
     std::cout << "SORTING DATA BASED ON:" << key << std::endl;
-    auto start = std::chrono::system_clock::now();
+    auto start = std::chrono::high_resolution_clock::now();
     mergeSort(data, key, schemaStr, rep, 0, data.size() - 1);
-    auto end = std::chrono::system_clock::now();
-    std::chrono::duration<double> duration = end - start;
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double, std::micro> duration = end - start;
     rep.time = duration.count();
 
     // writing output

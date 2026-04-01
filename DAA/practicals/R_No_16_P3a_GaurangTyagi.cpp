@@ -16,10 +16,10 @@ ReportType applySort(const std::string &schemaStr, const std::string &file, cons
     readFile(file, schemaStr, data, false);
 
     // sorting data
-    auto start = std::chrono::system_clock::now();
+    auto start = std::chrono::high_resolution_clock::now();
     mergeSort(data, schemaStr, key, rep, 0, data.size() - 1);
-    auto end = std::chrono::system_clock::now();
-    std::chrono::duration<double> duration = end - start;
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double, std::micro> duration = end - start;
     rep.time = duration.count();
 
     // writing output
@@ -95,18 +95,21 @@ int main()
     std::string filePath = "./Data/practical_1_data/input/";
     std::string outputPath = "./Data/practical_1_data/output/";
     std::fstream strm("./Charts/merge_sort/report.csv", std::ios::out);
-    strm << "dataset,age_assignments,age_comparisons,name_assignments,name_comparisons,age_time,name_time\r";
+    strm << "dataset,age_assignments,age_comparisons,name_assignments,name_comparisons,age_time,name_time,age_name_assignments,age_name_comparisons,age_name_time\r";
 
     for (int i = 10; i <= 100; i += 10)
     {
         int avg_comparisons_age = 0;
-        int avg_assignments_age = 0;
-
         int avg_comparisons_name = 0;
+        int avg_comparisons_age_name = 0;
+
+        int avg_assignments_age = 0;
         int avg_assignments_name = 0;
+        int avg_assignments_age_name = 0;
 
         double avg_time_age = 0;
         double avg_time_name = 0;
+        double avg_time_age_name = 0;
 
         for (int j = 0; j < 10; j++)
         {
@@ -131,17 +134,26 @@ int main()
         {
             std::string file = filePath + std::to_string(i) + "_set.csv";
             std::string output = outputPath + "name_age/" + std::to_string(i) + "_set_name_age.csv";
-            applySort(schemaStr, file, output, "age");
-            applySort(schemaStr, file, output, "name");
+            ReportType rep1 = applySort(schemaStr, file, output, "age");
+            ReportType rep2 = applySort(schemaStr, file, output, "name");
+
+            avg_assignments_age_name += rep1.assignments + rep2.assignments;
+            avg_comparisons_age_name += rep1.comparisons + rep2.comparisons;
+            avg_time_age_name += rep1.time + rep2.time;
         }
         avg_assignments_age /= 10;
-        avg_comparisons_age /= 10;
         avg_assignments_name /= 10;
+        avg_assignments_age_name /= 10;
+
+        avg_comparisons_age /= 10;
         avg_comparisons_name /= 10;
+        avg_comparisons_age_name /= 10;
+
         avg_time_age /= 10;
         avg_time_name /= 10;
+        avg_time_age_name /= 10;
 
-        strm << i << "," << avg_assignments_age << "," << avg_comparisons_age << "," << avg_assignments_name << "," << avg_comparisons_name << "," << avg_time_age << "," << avg_time_name << "\r";
+        strm << i << "," << avg_assignments_age << "," << avg_comparisons_age << "," << avg_assignments_name << "," << avg_comparisons_name << "," << avg_time_age << "," << avg_time_name << "," << avg_assignments_age_name << "," << avg_comparisons_age_name << "," << avg_time_age_name << "\r";
     }
     strm.close();
     std::system("python3 ./Charts/visualize.py ./Charts/merge_sort/report.csv ./Charts/merge_sort/report.png");

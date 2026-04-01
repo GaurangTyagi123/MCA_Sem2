@@ -65,7 +65,7 @@ double radixSort(std::vector<std::vector<value>> &data, const std::string &schem
     const std::vector<Coltype> schema = parseSchema(schemaStr);
     const size_t keyIndex = getSortKey(key, schemaStr);
 
-    auto start = std::chrono::system_clock::now();
+    auto start = std::chrono::high_resolution_clock::now();
     if (schema[keyIndex].type == Type::INT)
     {
         for (int i = 1; i >= 0; i--)
@@ -80,7 +80,7 @@ double radixSort(std::vector<std::vector<value>> &data, const std::string &schem
             countSort(data, schema, keyIndex, i);
         }
     }
-    auto end = std::chrono::system_clock::now();
-    std::chrono::duration<double> duration = end - start;
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double, std::micro> duration = end - start;
     return duration.count();
 }

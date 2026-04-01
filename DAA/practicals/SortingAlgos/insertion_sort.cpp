@@ -8,7 +8,7 @@ ReportType insertionSort(std::vector<std::vector<value>> &data, const std::strin
     int assignments = 0;
 
     ReportType rep;
-    auto start = std::chrono::system_clock::now();
+    auto start = std::chrono::high_resolution_clock::now();
     for (int i = 0; i < data.size(); i++)
     {
         auto key = data[i][sortKey];
@@ -23,9 +23,9 @@ ReportType insertionSort(std::vector<std::vector<value>> &data, const std::strin
         }
         data[j + 1] = key_row;
     }
-    auto end = std::chrono::system_clock::now();
-    std::chrono::duration<double> duration = end - start;
-    
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double, std::micro> duration = end - start;
+
     rep.time = duration.count();
     rep.assignments = assignments;
     rep.comparisons = comparisons;

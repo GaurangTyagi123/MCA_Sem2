@@ -20,7 +20,7 @@ ReportType applySort(const std::string &schemaStr, const std::string &file, cons
     auto start = std::chrono::high_resolution_clock::now();
     quickSort(data, schemaStr, key, rep, 0, data.size() - 1);
     auto end = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> duration = end - start;
+    std::chrono::duration<double,std::micro> duration = end - start;
     rep.time = duration.count();
 
     // writing output
