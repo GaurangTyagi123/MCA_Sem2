@@ -95,7 +95,7 @@ int main()
     std::string filePath = "./Data/practical_1_data/input/";
     std::string outputPath = "./Data/practical_1_data/output/";
     std::fstream strm("./Charts/quick_sort/report.csv", std::ios::out);
-    strm << "dataset,age_assignments,age_comparisons,name_assignments,name_comparisons,age_time,name_time,avg_assignments_age_name,avg_comparisons_age_name,avg_time_age_name\r";
+    strm << "dataset,age_assignments,age_comparisons,name_assignments,name_comparisons,age_time,name_time,age_name_assignments,age_name_comparisons,age_name_time\r";
 
     for (int i = 10; i <= 100; i += 10)
     {
