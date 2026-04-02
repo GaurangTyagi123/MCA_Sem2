@@ -12,17 +12,23 @@ if __name__ == "__main__":
     
     plt.style.use("ggplot")
     plt.figure(figsize=(19.2,10.8))
-    plt.subplot(2,2,1)
+    plt.subplot(2,3,1)
     sns.lineplot(report,x='dataset',y='age_comparisons',marker="*",color="red")
     
-    plt.subplot(2,2,2)
+    plt.subplot(2,3,2)
     sns.lineplot(report,x='dataset',y='age_assignments',marker="*",color="blue")
     
-    plt.subplot(2,2,3)
+    plt.subplot(2,3,3)
     sns.lineplot(report,x='dataset',y='name_comparisons',marker="*",color="green")
     
-    plt.subplot(2,2,4)
+    plt.subplot(2,3,4)
     sns.lineplot(report,x='dataset',y='name_assignments',marker="*",color="violet")
+    
+    plt.subplot(2,3,5)
+    sns.lineplot(report,x='dataset',y='age_name_assignments',marker="*",color="lime")
+    
+    plt.subplot(2,3,6)
+    sns.lineplot(report,x='dataset',y='age_name_comparisons',marker="*",color="orangered")
     
     plt.savefig(image_path)
     plt.plot()
