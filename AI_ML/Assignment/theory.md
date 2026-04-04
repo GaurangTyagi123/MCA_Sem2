@@ -170,11 +170,11 @@ $$
 ```
 where,
 
-- **H** represents the *hypothesis (disease/prognosis)*  
-- **S_j** represents the *j-th symptom*  
-- **P(H)** is the *prior probability of the disease*  
-- **P(S_j | H)** is the *likelihood of observing symptom S_j given the disease*  
-- **d** is the *total number of symptoms*
+- H represents the hypothesis (disease/prognosis) 
+- S_j represents the j-th symptom 
+- P(H) is the *prior probability of the disease*  
+- P(S_j | H) is the *likelihood of observing symptom S_j given the disease*  
+- d is the total number of symptoms
 
 ```
 
