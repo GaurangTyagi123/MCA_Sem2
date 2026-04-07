@@ -1,12 +1,12 @@
 #include <queue>
 #include <limits>
 
-
 std::unordered_map<std::string, int> djikstra(const std::vector<std::vector<std::string>> &edges, const std::string &source)
 {
     const std::unordered_map<std::string, std::forward_list<std::pair<std::string, int>>> adj = getAdjacencyList(edges);
     std::unordered_map<std::string, int> dist(adj.size());
     const int INF = std::numeric_limits<int>::max();
+    std::ofstream strm("/home/gaurang/d_drive/College Material/MCA_Sem2/DAA/practicals/Data/practical_7_data/djikstra.csv", std::ios::out);
 
     for (const auto &vertex : adj)
     {
@@ -23,6 +23,7 @@ std::unordered_map<std::string, int> djikstra(const std::vector<std::vector<std:
 
     queue.emplace(source, 0);
     dist[source] = 0;
+    strm << source << ":" << "end\n";
     while (!queue.empty())
     {
         std::pair<std::string, int> from = queue.top();
@@ -43,9 +44,11 @@ std::unordered_map<std::string, int> djikstra(const std::vector<std::vector<std:
             if (dist[from.first] != INF && dist[to.first] > dist[from.first] + to.second)
             {
                 dist[to.first] = dist[from.first] + to.second;
+                strm << to.first << ":" << from.first << "\n";
                 queue.emplace(to.first, dist[to.first]);
             }
         }
     }
+    strm.close();
     return dist;
 }

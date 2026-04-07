@@ -57,6 +57,7 @@ void MST_Kruskal(std::vector<std::vector<std::string>> &edges)
     sort(edges.begin(), edges.end(), compareEdge);
     const std::unordered_map<std::string, std::forward_list<std::pair<std::string, int>>> adj = getAdjacencyList(edges);
     std::vector<std::string> vertices;
+    std::ofstream strm("/home/gaurang/d_drive/College Material/MCA_Sem2/DAA/practicals/Data/practical_7_data/kruskal.csv", std::ios::out);
 
     for (const auto &vertex : adj)
     {
@@ -71,6 +72,7 @@ void MST_Kruskal(std::vector<std::vector<std::string>> &edges)
         if (ds.find(u) != ds.find(v))
         {
             std::cout << edge[0] << " - " << edge[1] << " : " << edge[2] << std::endl;
+            strm << edge[0] << ":" << edge[1] << "," << edge[2] << std::endl;
             ds.unite(u, v);
         }
     }
