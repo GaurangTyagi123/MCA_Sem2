@@ -16,10 +16,10 @@ void bfs(const std::vector<std::vector<std::string>> &edges, const std::string &
         std::cout << nextNode << std::endl;
         for (const auto &edge : adj.at(nextNode))
         {
+            strm << nextNode << ":" << edge.first << "," << edge.second << "\n";
             if (visited.count(edge.first) <= 0)
             {
                 visited[edge.first] = true;
-                strm << nextNode << ":" << edge.first << "\n";
                 queue.emplace(edge.first);
             }
         }
