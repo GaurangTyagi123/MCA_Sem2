@@ -23,7 +23,7 @@ std::unordered_map<std::string, int> djikstra(const std::vector<std::vector<std:
 
     queue.emplace(source, 0);
     dist[source] = 0;
-    strm << source << ":" << "null,0\n";
+    strm << "null" << ":" << source << ",0\n";
     while (!queue.empty())
     {
         std::pair<std::string, int> from = queue.top();
@@ -44,7 +44,7 @@ std::unordered_map<std::string, int> djikstra(const std::vector<std::vector<std:
             if (dist[from.first] != INF && dist[to.first] > dist[from.first] + to.second)
             {
                 dist[to.first] = dist[from.first] + to.second;
-                strm << to.first << ":" << from.first << "," << to.second << "\n";
+                strm << from.first << ":" << to.first << "," << to.second << "\n";
                 queue.emplace(to.first, dist[to.first]);
             }
         }
