@@ -22,7 +22,7 @@ void dfs(const std::vector<std::vector<std::string>> &edges, const std::string &
         }
         if (iter != adj.at(nextNode).end())
         {
-            strm << nextNode << ":" << iter->first << "\n";
+            strm << nextNode << ":" << iter->first << "," << iter->second << "\n";
             visited[nextNode] = true;
             stack.emplace(iter->first);
         }

@@ -1,8 +1,8 @@
-a:h
-h:i
-i:g
-g:f
-f:e
-e:d
-d:c
-c:b
+a:h,8
+h:i,7
+i:g,6
+g:f,2
+f:e,10
+e:d,9
+d:c,7
+c:b,8
