@@ -156,7 +156,7 @@ public:
                         {
                             board[i][j].state = State::CROSS;
                             int tempScore = dfs(false, depth - 1);
-                            bestScore = tempScore;
+                            bestScore = std::max(tempScore,bestScore);
                             board[i][j].state = State::BLANK;
                         }
                     }
@@ -174,7 +174,7 @@ public:
                         {
                             board[i][j].state = State::ZERO;
                             int tempScore = dfs(true, depth - 1);
-                            bestScore = tempScore;
+                            bestScore = std::max(bestScore,tempScore);
                             board[i][j].state = State::BLANK;
                         }
                     }

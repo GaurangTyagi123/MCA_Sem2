@@ -40,10 +40,10 @@ int main()
     std::cout << "_____________________________" << std::endl;
 
     std::cout << "PRIMS:- " << std::endl;
-    std::map<std::string, std::string> parent = MST_Prims(edges, "a");
+    std::map<std::string, std::pair<std::string, int>> parent = MST_Prims(edges, "a");
     for (const auto &p : parent)
     {
-        std::cout << p.first << "-" << p.second << std::endl;
+        std::cout << p.first << " - " << p.second.first << " : " << p.second.second << std::endl;
     }
     std::cout << "_____________________________" << std::endl;
 

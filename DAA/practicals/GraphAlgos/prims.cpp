@@ -2,17 +2,17 @@
 #include <map>
 #include <climits>
 
-std::map<std::string, std::string> MST_Prims(std::vector<std::vector<std::string>> &edges, const std::string &source)
+std::map<std::string, std::pair<std::string, int>> MST_Prims(std::vector<std::vector<std::string>> &edges, const std::string &source)
 {
     const std::unordered_map<std::string, std::forward_list<std::pair<std::string, int>>> adj = getAdjacencyList(edges);
     const size_t V = adj.size();
-    std::priority_queue<std::pair<std::string, int>, std::vector<std::pair<std::string, int>>, customComparator> queue;
+    std::priority_queue<std::pair<std::string, int>, std::vector<std::pair<std::string, int>>, std::greater<std::pair<std::string, int>>> queue;
     std::map<std::string, bool> visited;
-    std::map<std::string, std::string> parent;
+    std::map<std::string, std::pair<std::string, int>> parent;
     std::map<std::string, int> key;
     std::ofstream strm("/home/gaurang/d_drive/College Material/MCA_Sem2/DAA/practicals/Data/practical_7_data/prims.csv", std::ios::out);
 
-    parent[source] = "end";
+    parent[source] = {"end", 0};
     for (const auto &vertex : adj)
     {
         key[vertex.first] = INT_MAX;
@@ -20,7 +20,7 @@ std::map<std::string, std::string> MST_Prims(std::vector<std::vector<std::string
     for (const auto &edge : adj.at(source))
     {
         queue.emplace(edge.first, edge.second);
-        parent[edge.first] = source;
+        parent[edge.first] = {source, edge.second};
         key[edge.first] = edge.second;
     }
     visited[source] = true;
@@ -38,7 +38,7 @@ std::map<std::string, std::string> MST_Prims(std::vector<std::vector<std::string
             if (!visited.count(edge.first) && edge.second < key[edge.first])
             {
                 queue.emplace(edge.first, edge.second);
-                parent[edge.first] = newNode.first;
+                parent[edge.first] = {newNode.first, edge.second};
                 strm << edge.first << ":" << newNode.first << "," << edge.second << "\n";
                 key[edge.first] = edge.second;
             }
