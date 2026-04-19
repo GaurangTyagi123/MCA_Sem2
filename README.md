@@ -20,6 +20,17 @@
     - `Repeat 1 and 2 with Quick Sort and Compare with the results of Insertion Sort and Merge Sort`
 * ### Practical 5 : [Randomized Quick Sort](./DAA/practicals/R_No_16_P5a_GaurangTyagi.cpp)
     - `Repeat 1 and 2 with Randomized Quick Sort and Compare with the results of QuickSort.`
+- ### Practical 6 : [Radix Sort](./DAA/practicals/R_No_16_P6_GaurangTyagi.cpp)
+    - `Implement radix Sort and run it on a synthetic data of (Name : string consisting of 10 characters, age in years: integers in the range 10 to 20 ) for n = 10, 20, …100. For each n, randomly generate at least 10 data sets. Report the average number of comparisons for each n. Plot a graph and obtain a best-fit curve.`
+- ### Practical 7 : [Graph Algorithms](./DAA/practicals/R_No_16_P7_GaurangTyagi.cpp)
+    ```
+    - Implement the following algorithms on graph:
+        1. Breadth First Search (BFS)
+        2. Depth First Search (DFS)
+        3. Djikstra Algorithm
+        4. Prims MST algorithm
+        5. Kruskla MST algorithm
+    ```
 
 # 2.)  Data Mining
 
@@ -80,7 +91,20 @@
 * ### Practical 5 : [Support Vector Machine](./DM/SVM/SVM.ipynb)
     - Comparing Linear and Non-Linear SVM Kernels on UCI Datasets.
 
+* ### Practical 6 : [Ruled Based Classifier](./DM/Rule_Based_Classifier/RuleBasedClassifier.ipynb)
+    - Implement a rule based classifier using decision tree
+
+* ### Practical 7 : [Adaboost](./DM/Adaboost/Adaboost.ipynb)
+    - Implement adaboost on datasets used in decision tree practical and compare the performance
+
+* ### Practical 8 : [Apriori V/s FP Growth](./DM/Apriori_FP_Growth/Apriori%20v_s%20FP%20Growth.ipynb%20-%20Colab.pdf)
+    - Implement Apriori algorithm and FP Growth manually and compare their performance
+
+* ### Syllabus Practicals : [Practical List](./DM/practicals/GaurangTyagi_practical_list.pdf)
+    - Implement all the practicals given at the end of the DM syllabus
+
 # 3.) Operating System
+
 *  ### Practical 1: [Commands](./OS/Assignments/Assignment-1/Assignment-1-sol.pdf)  
     - Write Linux commands for the following commands
         * Create a Project Directory 
@@ -96,8 +120,10 @@
         * Navigate to the 'js' Directory and create javascript file script.js 
 
         * Delete file Style.css
+
 * ### Practical 2: [fork](./OS/Assignments/Assignment-2/Assignment-2-sol.pdf)
      - Write a C++ program to demonstrate process creation using fork().The child process should print its PID and parentPID, perform a simple task (e.g.,counting from 1 to 5 with delay ), and then terminate.The parent process should wait for the child using wait() and display the child’s exit status.
+
 * ### Practical 3: [System Commands](./OS/Assignments/Assignment-3/Assignment-3-sol.pdf)
         - Q1) USE any Linux-based C compiler to perform following exercise.
 
@@ -158,17 +184,107 @@
 
         * Displays results in tabular form
 
-Calculate and display Average WT and TAT
+    Calculate and display Average WT and TAT
+
+* ### Practical 6: [Turn Variable Synchronization](./OS/Assignments/Assignment-6/ass6.cpp)
+    Write a C++ program to simulate two processes P0 and P1 using threads that implement the Turn Variable synchronization technique.
+
+        - Use a shared integer variable turn initialized to 0.
+        - Process P0 is allowed to enter the critical section only when turn == 0.
+        - Process P1 is allowed to enter the critical section only when turn == 1.
+        - After completing its critical section, each process must update the turn variable to allow the other process to enter.
+        - Each process should execute its critical section five times.
+        - Display appropriate messages when a process:
+            ◦ enters the critical section
+            ◦ exits the critical section.
+
+* ### Practical 7 : [Counting Semaphore](./OS/Assignments/Assignment-7/ass7.cpp)
+    Write a C++ program to simulate multiple processes using threads that synchronize access to a shared resource using a counting semaphore.
+        - Create 3 threads (P0, P1, P2) representing processes.
+        - Use a counting semaphore S initialized to 1.
+        - Each process must:
+            - Perform wait (P operation) before entering the critical section.
+            - Perform signal (V operation) after exiting the critical section.
+            - Inside the critical section:
+            - Print: "Process Pi entering critical section" & "Process Pi leaving critical section"
+            - Each process should:
+            - Execute the critical section 3 times.
+            - Introduce a small delay (sleep) inside the critical section to clearly observe synchronization.
+* ### Practical 8 : [Consumer-Producer Problem](./OS/Assignments/Assignment-8/ass-8.md)
+        Your program should satisfy the following requirements:
+
+        Create a buffer of size 3 (use array or queue). 
+
+        Use the following semaphores: 
+
+        mutex = 1 (for mutual exclusion) 
+
+        empty = 3 (buffer initially empty) 
+
+        full = 0 (no items initially) 
+
+        Create: 
+
+        1 Producer thread 
+
+        1 Consumer thread 
+
+        The Producer should: 
+
+        Produce numbers from 1 to 5 
+
+        Add them to the buffer 
+
+        Print:
+        "Produced: i" 
+
+        The Consumer should: 
+
+        Remove items from the buffer 
+
+        Print:
+        "Consumed: i" 
+
+        Use proper synchronization: 
+
+        Producer waits if buffer is full 
+
+        Consumer waits if buffer is empty 
+
+        Add small delay using sleep to observe output clearly 
+* ### Practial 9 : [Dynamic Memory Allocation](./OS/Assignments/Assignment-9/ass-9.cpp)
+    - Write a C++ program to simulate dynamic memory partitioning using the following allocation strategies:
+        1. First Fit.
+        2. Next Fit.
 # 4.) Artificial Intelligence & Machine Learning
-*   ### Practical 1: [TicTacToe](./AI_ML/practical_1)
+
+* ### Practical 1: [TicTacToe](./AI_ML/practical_1)
      - Write a program which can play TicTacToe
      - Write a prgram which can play TicTacToe (using minimax)
      - Write a prgram which can play TicTacToe (using breadth first search)
      - Write a prgram which can play TicTacToe (using depth first search)
-    ### Practical 2: [WaterJug](./AI_ML/practical_2/WaterJug.cpp)
+     - Write a program to solve 8 puzzle problem.
+
+* ### Practical 2: [WaterJug](./AI_ML/practical_2/WaterJug.cpp)
      - Write a program to solve the Water Jug problem.
 
+* ### Practical 3 : [Cryptoarithmetic](./AI_ML/practical_3/Crptography.cpp)
+    - Write a program to solve crypto-arithmetic problem
+
+* ### Practical 4 : [Linear Regression](./AI_ML/practical_4/Linear%20Regression.ipynb)
+    - Write a program to implement linear regression on housing data
+
+* ### Practical 5 : [Logisitic Regression](./AI_ML/practical_5/Logistic%20Regression.ipynb)
+    - Write a program to implement logisitic regression on spam/no-spam dataset
+
+* ### Practical 6 : [KNN](./AI_ML/practical_6/KNN.ipynb)
+    - Write a program to implement KNN on iris dataset
+
+* ### Practical 7 : [SVM](./AI_ML/practical_7/SVM.ipynb)
+    - Write a program to implement SVM on iris dataset
+
 # 5.) SEC 
+
 * ### Practical 1: [Basics](./SEC/practical-1/GaurangTyagi_16_P1.pdf)
     - Create a LaTeX document in Overleaf that demonstrates basic document setup
         and text formatting. Set the page size to A4, the orientation of the first page to landscape and
@@ -198,3 +314,26 @@ Calculate and display Average WT and TAT
     equations are correctly aligned, symbols are appropriately formatted, and mathematical
     notation follows standard conventions. Submit both the source file (.tex) and the compiled
     output file (.pdf).
+
+* ### Practical 4 : [Figures & Graphics](./SEC/practical-4/practical_4.pdf)
+    - Implement Figures & Graphics in Latex
+
+* ### Practical 5 : [CV](./SEC/practical-5/Simple_Hipster_CV.pdf)
+    - Create a CV using Latex
+
+* ### Practical 6 : [Matlab basics](./SEC/practical-6/prac-6.pdf)
+    - Implement basics of MATLAB
+
+* ### Practical 7 : [Graphs](./SEC/practical-7/prac-7.pdf)
+    - Implement 2d and 3d graphs in MATLAB
+
+* ### Practical 8 : [MATLAB functions](./SEC/practical-8/prac-8.pdf)
+    - Implement functions in MATLAB
+
+# 5.) Cyber Security
+
+* ### Practical 1 : [cyber security practical 1](./CS/practical-1/practical-1.pdf)
+
+* ### Practical 2 : [cyber security practical 2](./CS/practical-2/16_GaurangTyagi_EmailHeaderLab.pdf)
+
+* ### Assignment : [cyber security assignment-1](./CS/assignment/16_GaurangTyagi_CyberSecurity_Assignment-1.pdf)
